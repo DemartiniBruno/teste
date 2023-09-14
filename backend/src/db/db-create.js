@@ -44,7 +44,7 @@ const Subgrupo = sequelize.define('subgrupo',{
         allowNull: false
     }, 
 })
-Subgrupo.belongsTo(Grupo, { foreignKey: 'id_grupo' });
+Subgrupo.belongsTo(Grupo, { foreignKey: 'grupo_id' });
 
 const ErUsuarioDoSubgrupo = sequelize.define('er_usuario_do_subgrupo',{
     permissao_adm:{
@@ -52,8 +52,8 @@ const ErUsuarioDoSubgrupo = sequelize.define('er_usuario_do_subgrupo',{
         default: false
     },
 })
-ErUsuarioDoSubgrupo.belongsTo(Subgrupo, { foreignKey: 'id_subgrupo' });
-ErUsuarioDoSubgrupo.belongsTo(Usuario, { foreignKey: 'id_usuario' });
+ErUsuarioDoSubgrupo.belongsTo(Subgrupo, { foreignKey: 'subgrupo_id' });
+ErUsuarioDoSubgrupo.belongsTo(Usuario, { foreignKey: 'usuario_id' });
 
 module.exports = {
     sequelize,

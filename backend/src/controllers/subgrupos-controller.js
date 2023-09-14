@@ -8,8 +8,8 @@ const cadastrarSubgrupo = async (req, res) => {
 
     const er_subgrupo = await db.ErUsuarioDoSubgrupo.create({
         permissao_adm: true,
-        id_subgrupo: subgrupo.id,
-        id_usuario: usuario.usuario.id
+        subgrupo_id: subgrupo.id,
+        usuario_id: usuario.usuario.id
     })
 
     res.json(subgrupo)
