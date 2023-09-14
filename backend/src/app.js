@@ -17,4 +17,6 @@ app.use(authMiddleware)
 app.use('/', gruposRouters)
 app.use('/', subgruposRouters)
 
+console.log('testeGit')
+
 module.exports = app;
