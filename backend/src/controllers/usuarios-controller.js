@@ -58,7 +58,6 @@ const login = async (req, res) => {
                             usuario: usuario,
                         }, '123'
                     )
-                    console.log(token)
                     res.json(token)
                 } else {
                     throw new Error('Senha Inválida')
