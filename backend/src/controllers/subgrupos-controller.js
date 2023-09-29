@@ -16,7 +16,6 @@ const cadastrarSubgrupo = async (req, res) => {
 
             console.log(`Subgrupo ${subgrupo.nome} - ${subgrupo.descricao} criado com sucesso`)
 
-
             //Quando o administrador for morador de um dos apartamentos, ao marcar a checkbox de morador deve ser enviado no body a informação: "permissao_adm: true"
             if(subgrupo.permissao_adm){
 
@@ -27,9 +26,7 @@ const cadastrarSubgrupo = async (req, res) => {
                     usuario_id: usuario.usuario.id,
                     permissao_adm: true
                 })
-
-                console.log(`Subgrupo ${subgrupo.nome} - ${subgrupo.descricao} criado com sucesso`)
-
+                
                 console.log(`O administrador ${usuario.usuario.nome} é morador do subgrupo ${subgrupo.nome} - ${subgrupo.descricao}`)
             }
         })
