@@ -1,19 +1,18 @@
 const jsonWebToken = require('jsonwebtoken');
+const db = require('../db/db-create');
 
+const CodeGenerator = require('node-code-generator')
+const generator = new CodeGenerator
+var pattern = 'AP###'
+var howMany = 1;
+var options = {}
 
 //Função para criar um código aleatório de 5 digitos para ser vinculado ao apartamento
 const codigo_acesso = () => {
     //Talvez usar a biblioteca code_random
-
-
     try {
-        const codigo_teste = getRandomCode(5, {
-            letter: true,
-            digits: true
-        })
+        const codigo = generator.generateCodes(pattern, howMany, options);
 
-        console.log(codigo_teste)
-        const codigo = Math.floor(Math.random() * 100000);
         if (codigo != db.Subgrupo.findOne({
             where: {
                 codigo_acesso: codigo

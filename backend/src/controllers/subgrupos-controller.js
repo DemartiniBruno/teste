@@ -12,7 +12,7 @@ const cadastrarSubgrupo = async (req, res) => {
                 grupo_id: req.params.grupo_id,
                 //Vou definir quais são os parametros do subgrupo individualmente porque puxo o parametro da URL e não só do body do request
                 //Como se trata de vários subgrupos de um único grupo, então o parametro do grupo_id vem pela URL mesmo, não preciso passar pelo body
-                codigo_acesso: global_controller.codigo_acesso()
+                codigo_acesso: global_controller.codigo_acesso()[0]
                 //Aqui vou chamar a função codig_acesso para gerar um código unico de identificação
             })
 
