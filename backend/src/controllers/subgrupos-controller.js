@@ -1,55 +1,5 @@
 const db = require('../db/db-create');
-const jsonWebToken = require('jsonwebtoken');
-
-//Função para criar um código aleatório de 5 digitos para ser vinculado ao apartamento
-const codigo_acesso = () => {
-    //Talvez usar a biblioteca code_random
-    try {
-        const codigo = Math.floor(Math.random() * 100000);
-        if (codigo != db.Subgrupo.findOne({
-            where: {
-                codigo_acesso: codigo
-            }
-        })) {
-            return codigo
-        } else {
-            const novo_codigo = codigo_acesso()
-            return novo_codigo
-        }
-    } catch (error) {
-        console.log(error.message)
-    }
-}
-
-const informacoes_usuario = (usuario_codificado) => {
-    return usuario_decodificado = jsonWebToken.decode(usuario_codificado, '123')
-}
-
-// ALÉM DA FUNÇÃO DE INFORMACAO_USUARIO CRIAR A FUNÇÃO DE CRIAR ACESSO GENERICA PARA QUE EU REUTILIZE QUANDO CADASTRAR O ADMINISTRADOR
-
-// const codigo_acesso = () => {
-
-//         var codigo_teste=12345
-//         var codigo = Math.floor(Math.random() * 100000);
-//         if(contador == 0){
-//             console.log(`Vamos redefinir o código ${codigo}`)
-//             codigo = codigo_teste
-//             console.log(`codigo redefinido ${codigo}`)
-//             contador=1
-//             console.log(`aumentando contador ${contador}`)
-//         }
-//         console.log(`Criando código ${codigo}`)
-//         if(codigo!=codigo_teste){
-//             console.log(`Codigo unico`)
-//             return codigo
-//         } else{
-//             console.log(`Codigo duplicado`)
-//             const novo_codigo = codigo_acesso()
-//             return novo_codigo
-//         }
-
-// }
-
+const global_controller = require('./global-controller')
 
 //Nessa função vou receber um array com os dados do subgrupo e usar o forEach para criar cada um dos subgrupos
 const cadastrarSubgrupo = async (req, res) => {
@@ -62,7 +12,7 @@ const cadastrarSubgrupo = async (req, res) => {
                 grupo_id: req.params.grupo_id,
                 //Vou definir quais são os parametros do subgrupo individualmente porque puxo o parametro da URL e não só do body do request
                 //Como se trata de vários subgrupos de um único grupo, então o parametro do grupo_id vem pela URL mesmo, não preciso passar pelo body
-                codigo_acesso: codigo_acesso()
+                codigo_acesso: global_controller.codigo_acesso()
                 //Aqui vou chamar a função codig_acesso para gerar um código unico de identificação
             })
 
@@ -71,7 +21,7 @@ const cadastrarSubgrupo = async (req, res) => {
             //Quando o administrador for morador de um dos apartamentos, ao marcar a checkbox de morador deve ser enviado no body a informação: "permissao_adm: true"
             if (subgrupo.permissao_adm) {
 
-                const usuario = informacoes_usuario(req.headers.authorization)
+                const usuario = global_controller.informacoes_usuario(req.headers.authorization)
 
                 await db.ErUsuarioDoSubgrupo.create({
                     subgrupo_id: db_subgrupo.id,
@@ -96,7 +46,7 @@ const cadastrarSubgrupo = async (req, res) => {
 const acessarSubgrupo = async (req, res) => {
 
     try {
-        const usuario = informacoes_usuario(req.headers.authorization)
+        const usuario = global_controller.informacoes_usuario(req.headers.authorization)
         const codigo_acesso = req.body.codigo_acesso
         const subgrupo = await db.Subgrupo.findOne({
             where: {
@@ -131,7 +81,7 @@ const acessarSubgrupo = async (req, res) => {
 //Funções GET para visualização de informações
 
 const visualizarSubgrupo = async (req, res) => {
-    const usuario = informacoes_usuario(req.headers.authorization)
+    const usuario = global_controller.informacoes_usuario(req.headers.authorization)
 
     const subgrupo = await db.Subgrupo.findOne({
         include: {
