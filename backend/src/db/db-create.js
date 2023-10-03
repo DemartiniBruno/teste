@@ -43,7 +43,10 @@ const Subgrupo = sequelize.define('subgrupo',{
     descricao: {
         type: DataTypes.STRING(100),
         allowNull: false
-    }, 
+    },
+    codigo_acesso:{
+        type: DataTypes.INTEGER(5)
+    }
 })
 // Subgrupo.belongsTo(Grupo, { foreignKey: 'grupo_id' });
 // Grupo.hasMany(Subgrupo)
