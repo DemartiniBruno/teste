@@ -1,10 +1,12 @@
 const jsonWebToken = require('jsonwebtoken');
 
+
 //Função para criar um código aleatório de 5 digitos para ser vinculado ao apartamento
 const codigo_acesso = () => {
     //Talvez usar a biblioteca code_random
-    try {
 
+
+    try {
         const codigo_teste = getRandomCode(5, {
             letter: true,
             digits: true
