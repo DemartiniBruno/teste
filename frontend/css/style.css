@@ -1,0 +1,213 @@
+body {
+    display: flex;
+    width: 1440px;
+    padding: 14px 492px 251px 491px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 14.664px;
+    background-color: rgba(47, 83, 115, 1);
+}
+
+img {
+    width: 450px; 
+    height: 221.336px; 
+    background-color: url(<path-to-image>), lightgray 50% / cover no-repeat;
+}
+
+#bloco {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    width: 457px;
+    height: 523px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background-color: #F2F2F2;
+    box-shadow: 0px 6px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+p {
+    color: #000;
+    font-family: Roboto;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-align: center;
+}
+
+#email {
+    width: 340px;
+    height: 46px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    border: 2px solid #2F5373;
+    background-color: rgba(255, 255, 255, 0.00);
+    color: rgba(0, 0, 0, 0.72);
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom:14px;
+}
+
+#senha {
+    width: 340px;
+    height: 46px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    border: 2px solid #2F5373;
+    background-color: rgba(255, 255, 255, 0.00);
+    color: rgba(0, 0, 0, 0.72);
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom:14px;
+}
+
+#login {
+    width: 200px;
+    height: 46px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background-color: #2F5373;
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+#texto {
+    color: #000;
+    font-family: Roboto;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+}
+
+#cadastro {
+    color: #2F5373;
+    font-family: Roboto;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+}
+
+body {
+    display: flex;
+    width: 1440px;
+    padding: 14px 492px 251px 491px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 14.664px;
+    background-color: rgba(47, 83, 115, 1)
+}
+
+
+#bloco {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 457px;
+    height: 523px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background-color: #F2F2F2;
+    box-shadow: 0px 6px 4px 0px rgba(0, 0, 0, 0.25);
+}  
+
+
+p {
+    color: #000;
+    font-family: Arialz;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-align: center;
+}
+
+
+#usuario {
+    color: rgba(0, 0, 0, 0.72);
+    font-family: Arial;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 340px;
+    height: 46px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    border: 2px solid #2F5373;
+    background-color: #F2F2F2;
+    margin-bottom: 14px;
+}
+
+
+#email {
+    color: rgba(0, 0, 0, 0.72);
+    font-family: Arial;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 340px;
+    height: 46px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    border: 2px solid #2F5373;
+    background-color: #F2F2F2;
+    margin-bottom: 14px;
+}
+
+
+#senha {
+    color: rgba(0, 0, 0, 0.72);
+    font-family: Arial;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 340px;
+    height: 46px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    border: 2px solid #2F5373;
+    background-color: #F2F2F2;
+    margin-bottom: 14px;
+}
+
+
+#cadastrar {
+    width: 200px;
+    height: 46px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background-color: #2F5373;
+    color: #FFF;
+    font-family: Arial;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
