@@ -45,7 +45,7 @@ const Subgrupo = sequelize.define('subgrupo',{
         allowNull: false
     },
     codigo_acesso:{
-        type: DataTypes.INTEGER(5)
+        type: DataTypes.STRING(5)
     }
 })
 // Subgrupo.belongsTo(Grupo, { foreignKey: 'grupo_id' });
