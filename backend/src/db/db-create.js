@@ -79,7 +79,8 @@ const Despesas = sequelize.define('despesa', {
         default: 1
     },
     valor_total:{
-        type: DataTypes.FLOAT,
+        type: DataTypes.NUMERIC,
+        allowNull: true
     },
     data_quitacao:{
         type: DataTypes.DATE
@@ -87,6 +88,7 @@ const Despesas = sequelize.define('despesa', {
     status_ativo:{
         type: DataTypes.BOOLEAN,
 
+        //orçamento não implementado na V1
     }
     
 },{sequelize, paranoid:true})
@@ -104,5 +106,6 @@ module.exports = {
     Usuario,
     Grupo,
     Subgrupo,
-    ErUsuarioDoSubgrupo
+    ErUsuarioDoSubgrupo,
+    Despesas
 }
