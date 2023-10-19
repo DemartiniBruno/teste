@@ -19,7 +19,7 @@
 
         .bloco {
             width: 457px;
-			height: 523px;
+            height: 523px;
             border-radius: 20px;
             background: #F2F2F2;
             margin: 5%;
@@ -33,7 +33,7 @@
         }
 
         .bloco h1 {
-        	width: 281px;
+            width: 281px;
             color: #000;
             text-align: center;
             font-family: Roboto, sans-serif;
@@ -43,6 +43,10 @@
             line-height: normal;
             margin-bottom: 20px;
         }
+        .bloco #voce_e_morador {
+            align-items: start;
+        }
+
 
         .input_padrao {
             width: 340px;
@@ -81,28 +85,25 @@
 
 <body>
     <div class="bloco">
-        <h1>Entrar em um condomínio</h1>
-        <input class="input_padrao" type="text" name="cAcess" placeholder="código de acesso" />
-        <button class="botao_padrao">entrar</button>
-    </div>
-
-    <div class="bloco">
-        <h1>Cadastrar um condomínio</h1>
-        <button class="botao_padrao">cadastrar</button>
+        <h1>Condomínio</h1>
+        <input class="input_padrao" type="text" name="infNome" placeholder="Nome" />
+        <input class="input_padrao" type="text" name="infDescrição" placeholder="Descrição" />
+        <form>
+            <div>
+              <input
+                type="checkbox"
+                id="voce_e_morador"
+                name=""
+                value="" />
+              <label for="voce_e_morador"> Você é morador? </label>
+            </div>
+           </form>
+        <button class="botao_padrao">continuar</button>
     </div>
     <script>
-        document.getElementById("botaoEntrar").addEventListener("click", function() {
-            var codigoAcesso = document.getElementById("codigoAcesso").value;
-            if (codigoAcesso === "codigo_correto") {
-                console.log("Código de acesso válido");
-            } else {
-                console.log("Código de acesso inválido");
-            }
-        });
-        document.getElementById("botaoCadastrar").addEventListener("click", function() {
-        console.log("Botão Cadastrar foi clicado!");
+        document.getElementById("botaoContinuar").addEventListener("click", function () {
+        console.log("Botão Continuar foi clicado!");
         });
     </script>
 </body>
-
 </html>

@@ -1,0 +1,71 @@
+body {
+    display: flex;
+    max-width: 90em; 
+    padding: 1em 34em 16.5em 34em; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.166em; 
+    background-color: rgba(47, 83, 115, 1);
+}
+
+#bloco {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    width: 28.563em; 
+    height: 32.688em; 
+    flex-shrink: 0;
+    border-radius: 1.25em; 
+    background-color: #F2F2F2;
+    box-shadow: 0 0.375em 0.25em 0 rgba(0, 0, 0, 0.25); 
+}
+
+h1 {
+    color: #000;
+    font-family: Roboto;
+    font-size: 1.6em; 
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-align: center;
+}
+
+#usuario, #email, #senha {
+    width: 21.25em; 
+    height: 2.875em; 
+    flex-shrink: 0;
+    border-radius: 0.75em; 
+    border: 0.125em solid #2F5373; 
+    background-color: rgba(255, 255, 255, 0.00);
+    color: rgba(0, 0, 0, 0.72);
+    font-family: Roboto;
+    font-size: 1em; 
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 0.875em; 
+}
+
+#cadastrar {
+    width: 13.333em; 
+    height: 2.875em; 
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    border-radius: 0.75em;
+    background: #2F5373;
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 1.3em; 
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 0.875em;
+}
