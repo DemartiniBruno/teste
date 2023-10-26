@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CondominAI</title>
+    <style>
+        body {
+          margin: 0;
+          padding: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          background-color: #2f5373;
+        }
+
+        .bloco {
+          width: 22.85em; 
+          height: 26.15em; 
+          border-radius: 1em; 
+          background: #f2f2f2;
+          margin: 4%; 
+          box-shadow: 0px 0.3em 0.2em 0px rgba(0, 0, 0, 0.25); 
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding: 1em; 
+          text-align: center;
+        }
+
+        .bloco h1 {
+          width: 14.05em;
+          color: #000;
+          text-align: center;
+          font-family: Roboto;
+          font-size: 1.6em;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+          margin-bottom: 1em;
+        }
+
+        .input_padrao {
+          width: 21.25em; 
+          height: 2.875em;
+          flex-shrink: 0;
+          margin-bottom: 1em;
+          border-radius: 0.75em; 
+          font-family: Roboto;
+          font-size: 1em; 
+          font-style: normal;
+          font-weight: 400;
+          border: 0.125em solid #2f5373;
+          background: rgba(255, 255, 255, 0);
+          box-sizing: border-box;
+        }
+
+        .botao_padrao {
+          width: 50%;
+          padding: 0.75em;
+          border: none;
+          border-radius: 0.8em;
+          background-color: #2f5373;
+          color: #fff;
+          font-size: 0.9em;
+          cursor: pointer;
+          color: #fff;
+          font-family: Roboto, sans-serif;
+          font-size: 1.3em;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          margin-bottom: 1em; 
+        }
+
+        .botao_padrao:hover {
+          background-color: #1f4160;
+        }
+    </style>
+  </head>
+
+  <body>
+    <div class="bloco">
+      <h1>Entrar em um condomínio</h1>
+      <input
+        class="input_padrao"
+        type="text"
+        name="cAcess"
+        placeholder="código de acesso"
+      />
+      <button class="botao_padrao">entrar</button>
+    </div>
+
+    <div class="bloco">
+      <h1>Cadastrar um condomínio</h1>
+      <!-- 
+
+        Coloquei a TAG a no botão CADASTRAR temporariamente apenas para redirecionar para tela de cadastro do grupo
+
+       -->
+      <button class="botao_padrao" onclick="redirecionar()"><a href="tela_cadastro_grupo.html">cadastrar</a></button>
+
+    <script>
+        function redirecionar() {
+            window.location.href = "tela_cadastro_grupo.html";
+        }
+    </script>
+    
+    </div>
+    <script>
+      document
+        .getElementById("botaoEntrar")
+        .addEventListener("click", function () {
+          var codigoAcesso = document.getElementById("codigoAcesso").value;
+          if (codigoAcesso === "codigo_correto") {
+            console.log("Código de acesso válido");
+          } else {
+            console.log("Código de acesso inválido");
+          }
+        });
+      document
+        .getElementById("botaoCadastrar")
+        .addEventListener("click", function () {
+          console.log("Botão Cadastrar foi clicado!");
+        });
+    </script>
+  </body>
+</html>

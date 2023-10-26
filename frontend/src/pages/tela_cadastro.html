@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="port">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>condominAI</title>
+  <link rel="stylesheet" href="../css/tela_cadastro.css">
+</head>
+
+<body>
+  <div id="background" role="main">
+    <div id="bloco">
+      <div>
+        <h1>Cadastro</h1>
+        <label for="usuario">
+          <input type="text" class="inputtext" name="usuario" id="usuario" placeholder="usuário">
+        </label>
+        <br>
+        <label for="email">
+          <input type="text" class="inputtext" name="email" id="email" placeholder="email">
+        </label>
+        <br>
+        <label for="senha">
+          <input type="password" class="inputpassword" name="senha" id="senha" placeholder="senha">
+        </label>
+        <br>
+        <form action='/tela_cadastro_subgrupo' method="post" enctype="multipart/form-data">
+          <button id="cadastrar" type="submit">Cadastrar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
