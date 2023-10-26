@@ -1,5 +1,7 @@
 const db = require('../db/db-create');
 const jsonWebToken = require('jsonwebtoken');
+const global_controller = require('./global-controller')
+
 
 const cadastrarGrupo = async (req, res) => {
     try {
@@ -10,44 +12,54 @@ const cadastrarGrupo = async (req, res) => {
     }
 }
 
-const visualizarGrupos = async (req, res) => {
-    const usuario = await jsonWebToken.decode(req.headers.authorization, '123')
+// const visualizarGrupos = async (req, res) => {
+//     const usuario = await jsonWebToken.decode(req.headers.authorization, '123')
 
-    try {
-        const grupos = await db.Grupo.findAll({
-            attributes: ['id', 'nome'],
+//     try {
+//         const grupos = await db.Grupo.findAll({
+//             attributes: ['id', 'nome'],
+//             include: {
+//                 required: true,
+//                 model: db.Subgrupo,
+//                 attributes: [],
+//                 include: {
+//                     required: true,
+//                     model: db.ErUsuarioDoSubgrupo,
+//                     attributes: [],
+//                     where: {
+//                         usuario_id: usuario.usuario.id
+//                     }
+//                 }
+//             }
+//         })
+//         res.json(grupos)
+//     } catch (error) {
+//         res.json(error.message)
+//     }
+// }
+
+const visualizarSubgrupos = async (req, res) => {
+
+    const usuario = global_controller.informacoes_usuario(req.headers.authorization)
+
+    const subgrupos = await db.Grupo.findAll({
+        attributes: ['id','nome'],
+        include: {
+            model: db.Subgrupo,
             include: {
-                required: true,
-                model: db.Subgrupo,
-                attributes: [],
-                include: {
-                    required: true,
-                    model: db.ErUsuarioDoSubgrupo,
-                    attributes: [],
-                    where: {
-                        usuario_id: usuario.usuario.id
-                    }
+                model: db.ErUsuarioDoSubgrupo,
+                required: false,
+                where: {
+                    usuario_id: usuario.usuario.id
                 }
             }
-        })
-        res.json(grupos)
-    } catch (error) {
-        res.json(error.message)
-    }
+        },
+        where: {
+            id: req.params.id
+        }
+    })
+    res.json(subgrupos)
 }
-
-// const visualizarSubgrupos = async (req, res) => {
-//     const subgrupos = await db.Grupo.findAll({
-//         attributes: ['id','nome'],
-//         include: {
-//             model: db.Subgrupo
-//         },
-//         where: {
-//             id: req.params.id
-//         }
-//     })
-//     res.json(subgrupos)
-// }
 
 // const visualizarGruposPorUsuario = async (req, res) => {
 //     const usuario = await jsonWebToken.decode(req.headers.authorization, '123')
@@ -100,6 +112,6 @@ const visualizarGruposEspecifico = async (req, res) => {
 
 module.exports = {
     cadastrarGrupo,
-    visualizarGrupos,
-    visualizarGruposEspecifico,
+    visualizarSubgrupos,
+    // visualizarGruposEspecifico,
 }

@@ -78,6 +78,19 @@ const Despesas = sequelize.define('despesa', {
         type: DataTypes.INTEGER,
         default: 1
     },
+    valor_total:{
+        type: DataTypes.NUMERIC,
+        allowNull: true
+    },
+    data_quitacao:{
+        type: DataTypes.DATE
+    },
+    status_ativo:{
+        type: DataTypes.BOOLEAN,
+
+        //orçamento não implementado na V1
+    }
+    
 },{sequelize, paranoid:true})
 
 //Criar a FK de orçamento depois que criar a tabela ORÇAMENTO
@@ -93,5 +106,6 @@ module.exports = {
     Usuario,
     Grupo,
     Subgrupo,
-    ErUsuarioDoSubgrupo
+    ErUsuarioDoSubgrupo,
+    Despesas
 }
