@@ -18,8 +18,22 @@ const cadastraDespesa = async (req, res) => {
             throw new Error('O número de parcelas precisa ser maior que 0')
 
         } else {
+
             const despesa = await db.Despesas.create(req.body)
-            res.json(despesa)
+            console.log(despesa)
+        
+            req.body.subgrupos_pagantes.forEach(async subgrupo_pagante => {
+                if(subgrupo_pagante.pagante){
+                    await db.ErSubgruposPagantes.create({
+                        despesas_id: despesa.id,
+                        subgrupo_id: subgrupo_pagante.id
+                    })
+                }
+            });
+
+            console.log(req.body.subgrupos_pagantes)
+
+            res.json(despesa)   
         }
 
 
