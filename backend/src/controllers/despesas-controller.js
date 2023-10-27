@@ -46,33 +46,25 @@ const cadastraDespesa = async (req, res) => {
 const editarDespesa = async (req, res) => {
     try {
 
-        const despesa = await db.Despesas.findOne({
+        var despesa = await db.Despesas.findOne({
             where:{
                 id: req.params.despesa_id
             }
         })
-        despesa = 
-
-        console.log(despesa.dataValues)
-        // console.log(despesa)
-    //     despesa.descricao = req.body.descricao
-    //     console.log(despesa)
-    //     despesa.numero_de_parcelas = req.body.numero_de_parcelas
-    //     console.log(despesa)
-    //     despesa.valor_total = req.body.valor_total
-    
-    //    console.log(despesa)
-    //    await despesa.save(req.body)
-    //    console.log(despesa)
-
+        console.log(`
         
+            despesa noirmal
 
-        // const despesa = req.body;
-
-        // const despesa_que_preciso_fazer_a_alteracao = req.params.despesa_id
-
-        // db.Despesas.update()
-
+         
+        
+        
+        `)
+        console.log(despesa.dataValues)
+        //despesa = console.log(despesa.dataValues)
+        despesa.descricao = req.body.descricao
+        despesa.numero_de_parcelas = req.body.numero_de_parcelas
+        despesa.valor_total = req.body.valor_total
+        await despesa.save({fields:['descricao', 'numero_de_parcelas','valor_total']});
         res.json(despesa)
 
     } catch (error) {
