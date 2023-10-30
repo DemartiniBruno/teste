@@ -100,8 +100,28 @@ const visualizarSubgrupo = async (req, res) => {
     res.json(subgrupo)
 }
 
+const editarSubgrupo = async (req, res) => {
+    try {
+        
+        var editarsubgrupo = await db.Subgrupo.findOne({
+            where: {
+                id: req.params.subgrupo_id
+            }
+        })
+        editarsubgrupo.nome = req.body.nome
+        editarsubgrupo.descricao = req.body.descricao
+        await editarsubgrupo.save()
+
+    } catch (error) {
+        res.json(error.message)
+        
+    }
+}
+
+
 module.exports = {
     cadastrarSubgrupo,
     acessarSubgrupo,
-    visualizarSubgrupo
+    visualizarSubgrupo,
+    editarSubgrupo
 } 
