@@ -107,5 +107,6 @@ module.exports = {
     Grupo,
     Subgrupo,
     ErUsuarioDoSubgrupo,
-    Despesas
+    Despesas,
+    ErSubgruposPagantes
 }
