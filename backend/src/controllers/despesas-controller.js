@@ -37,16 +37,8 @@ const editarDespesa = async (req, res) => {
                 id: req.params.despesa_id
             }
         })
-        console.log(`
-        
-            despesa noirmal
 
-         
-        
-        
-        `)
         console.log(despesa.dataValues)
-        //despesa = console.log(despesa.dataValues)
         despesa.descricao = req.body.descricao
         despesa.numero_de_parcelas = req.body.numero_de_parcelas
         despesa.valor_total = req.body.valor_total

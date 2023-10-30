@@ -5,5 +5,4 @@ const usuariosRouters = Router();
 
 usuariosRouters.post('/usuarios', controller.cadastrarUsuario)
 usuariosRouters.post('/login', controller.login)
-
 module.exports = usuariosRouters
