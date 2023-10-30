@@ -19,6 +19,6 @@ app.use('/', gruposRouters)
 app.use('/grupos/', subgruposRouters)
 app.use('/', despesasRouters)
 
-console.log('testeGit')
+// console.log('testeGit')
 
 module.exports = app;
