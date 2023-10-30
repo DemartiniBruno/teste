@@ -110,8 +110,27 @@ const visualizarGruposEspecifico = async (req, res) => {
     }
 }
 
+const editarGrupo  = async (req, res) => {
+    try {
+        var editargrupo = await db.Grupo.findOne({
+        where:{
+            id: req.params.grupo_id
+        }
+    })
+    editargrupo.nome = req.body.nome
+    editargrupo.descricao = req.body.descricao
+    await editargrupo.save({fields: ['nome', 'descricao']});
+    res.json(editargrupo)
+
+    
+    } catch (error) {
+        res.json(error.message)
+    }
+}
+
 module.exports = {
     cadastrarGrupo,
     visualizarSubgrupos,
-    // visualizarGruposEspecifico,
+    editarGrupo
+       // visualizarGruposEspecifico,
 }
