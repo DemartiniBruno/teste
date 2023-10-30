@@ -13,7 +13,7 @@ const cadastrarSubgrupo = async (req, res) => {
                 //Vou definir quais são os parametros do subgrupo individualmente porque puxo o parametro da URL e não só do body do request
                 //Como se trata de vários subgrupos de um único grupo, então o parametro do grupo_id vem pela URL mesmo, não preciso passar pelo body
                 codigo_acesso: global_controller.codigo_acesso()[0]
-                //Aqui vou chamar a função codig_acesso para gerar um código unico de identificação
+                //Aqui vou chamar a função codigo_acesso para gerar um código unico de identificação
             })
 
             console.log(`Subgrupo ${subgrupo.nome} - ${subgrupo.descricao} criado com sucesso`)
@@ -23,11 +23,7 @@ const cadastrarSubgrupo = async (req, res) => {
 
                 const usuario = global_controller.informacoes_usuario(req.headers.authorization)
 
-                await db.ErUsuarioDoSubgrupo.create({
-                    subgrupo_id: db_subgrupo.id,
-                    usuario_id: usuario.usuario.id,
-                    permissao_adm: true
-                })
+                criarRelacao(usuario, db_subgrupo, subgrupo.permissao_adm);
 
                 console.log(`O administrador ${usuario.usuario.nome} é morador do subgrupo ${subgrupo.nome} - ${subgrupo.descricao}`)
             }
@@ -54,16 +50,10 @@ const acessarSubgrupo = async (req, res) => {
             }
         })
 
-        // console.log(usuario)
-        console.log(usuario.usuario.id)
-
-
         if(subgrupo){
-            // console.log("testa")
-            await db.ErUsuarioDoSubgrupo.create({
-                subgrupo_id: subgrupo.id,
-                usuario_id: usuario.usuario.id
-            })
+
+            criarRelacao(usuario, subgrupo, req.body.permissao_adm)
+
             res.json({mensagem: "Vinculo criado"})
         } else {
             throw new Error('Apartamento não encontrado')
@@ -76,6 +66,23 @@ const acessarSubgrupo = async (req, res) => {
 
 
     // res.json({ mensagem: 'Usuario vinculado ao subgrupo' })
+}
+
+const criarRelacao = async (usuario, subgrupo, permissao_adm) => {
+
+    if(permissao_adm){
+        await db.ErUsuarioDoSubgrupo.create({
+            subgrupo_id: subgrupo.id,
+            usuario_id: usuario.usuario.id,
+            permissao_adm: true
+        })
+    } else{
+        await db.ErUsuarioDoSubgrupo.create({
+            subgrupo_id: subgrupo.id,
+            usuario_id: usuario.usuario.id,
+            // permissao_adm: true
+        })
+    }
 }
 
 //Funções GET para visualização de informações

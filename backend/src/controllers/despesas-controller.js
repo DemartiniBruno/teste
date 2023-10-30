@@ -20,7 +20,7 @@ const cadastraDespesa = async (req, res) => {
         } else {
 
             const despesa = await db.Despesas.create(req.body)
-            console.log(despesa)
+            // console.log(despesa)
         
             req.body.subgrupos_pagantes.forEach(async subgrupo_pagante => {
                 if(subgrupo_pagante.pagante){
@@ -29,13 +29,12 @@ const cadastraDespesa = async (req, res) => {
                         subgrupo_id: subgrupo_pagante.id
                     })
                 }
-            });
+            })
 
-            console.log(req.body.subgrupos_pagantes)
+            // console.log(req.body.subgrupos_pagantes)
 
             res.json(despesa)   
         }
-
 
     } catch (error) {
         res.json(error.message)
@@ -51,8 +50,16 @@ const editarDespesa = async (req, res) => {
                 id: req.params.despesa_id
             }
         })
+        console.log(`
+        
+            despesa noirmal
 
+         
+        
+        
+        `)
         console.log(despesa.dataValues)
+        //despesa = console.log(despesa.dataValues)
         despesa.descricao = req.body.descricao
         despesa.numero_de_parcelas = req.body.numero_de_parcelas
         despesa.valor_total = req.body.valor_total
@@ -63,9 +70,6 @@ const editarDespesa = async (req, res) => {
         res.json(error.message)
     }
 }
-
-
-
 
 module.exports = {
     cadastraDespesa,
