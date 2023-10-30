@@ -23,12 +23,6 @@ const cadastrarSubgrupo = async (req, res) => {
 
                 const usuario = global_controller.informacoes_usuario(req.headers.authorization)
 
-                // await db.ErUsuarioDoSubgrupo.create({
-                //     subgrupo_id: db_subgrupo.id,
-                //     usuario_id: usuario.usuario.id,
-                //     permissao_adm: true
-                // })
-
                 criarRelacao(usuario, db_subgrupo, subgrupo.permissao_adm);
 
                 console.log(`O administrador ${usuario.usuario.nome} é morador do subgrupo ${subgrupo.nome} - ${subgrupo.descricao}`)
@@ -56,14 +50,7 @@ const acessarSubgrupo = async (req, res) => {
             }
         })
 
-        // console.log(usuario)
-        // console.log(usuario.usuario.id)
-
         if(subgrupo){
-            // await db.ErUsuarioDoSubgrupo.create({
-            //     subgrupo_id: subgrupo.id,
-            //     usuario_id: usuario.usuario.id
-            // })
 
             criarRelacao(usuario, subgrupo, req.body.permissao_adm)
 
