@@ -117,8 +117,8 @@ const editarSubgrupo = async (req, res) => {
         })
         editarsubgrupo.nome = req.body.nome
         editarsubgrupo.descricao = req.body.descricao
-        await editarsubgrupo.save()
-
+        await editarsubgrupo.save({fields:['nome','descricao']})
+        res.json(editarsubgrupo)
     } catch (error) {
         res.json(error.message)
         
