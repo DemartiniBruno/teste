@@ -1,12 +1,28 @@
 const db = require('../db/db-create');
 const jsonWebToken = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const { json } = require('body-parser');
 
 
 const saltRounds = 10;
 
 const cadastrarUsuario = async (req, res) => {
 
+    console.log(`
+    
+    
+    
+    
+    
+    `)
+    console.log(req.body)
+    console.log(`
+    
+    
+    
+    
+    
+    `)
     try {
         if (await db.Usuario.findOne({
             where: {

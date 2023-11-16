@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>condominAI</title>
   <link rel="stylesheet" href="../css/tela_cadastro.css">
+
+  <script src="../script/cadastro.js"></script>
 </head>
 
 <body>
@@ -25,10 +27,12 @@
           <input type="password" class="inputpassword" name="senha" id="senha" placeholder="senha">
         </label>
         <br>
-        <form action='/tela_cadastro_subgrupo' method="post" enctype="multipart/form-data">
-          <button id="cadastrar" type="submit">Cadastrar</button>
-        </form>
+        <!-- <form action='/tela_cadastro_subgrupo' method="post" enctype="multipart/form-data">
+        </form> -->
+        <!-- Tirando do forms só para testar a função -->
+        <button id="cadastrar" onclick="cadastrar()">Cadastrar</button>
       </div>
     </div>
   </div>
+
 </body>

@@ -10,11 +10,16 @@ const despesasRouters = require('./routes/despesas-routes')
 
 const app = express();
 app.use(cors());
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
 
+app.use(bodyParser.urlencoded({
+    extended: true
+  }));
+
+  app.use(bodyParser.json())
 
 app.use('/', usuariosRouters)
-app.use(authMiddleware)
+// app.use(authMiddleware)
 app.use('/', gruposRouters)
 app.use('/grupos/', subgruposRouters)
 app.use('/', despesasRouters)

@@ -1,71 +1,54 @@
 <!DOCTYPE html>
 <html lang="port">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>condominAI</title>
-    <link rel="stylesheet" href="src/css/index.css.css" />
-  </head>
-  <body>
-    <div id="backgroung" role="main">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>condominAI</title>
+  <link rel="stylesheet" href="src/css/index.css.css" />
+</head>
+
+<body>
+  <div id="backgroung" role="main">
+    <div>
+      <img src="https://i.pinimg.com/originals/ee/2c/6d/ee2c6dbf292324dfbe74f45dbe0e79fc.png"
+        alt="Logo do condominAI" />
+    </div>
+    <div id="bloco">
       <div>
-        <img
-          src="https://i.pinimg.com/originals/ee/2c/6d/ee2c6dbf292324dfbe74f45dbe0e79fc.png"
-          alt="Logo do condominAI"
-        />
-      </div>
-      <div id="bloco">
-        <div>
-          <h1>Entrar</h1>
-          <label for="email">
-            <input
-              type="text"
-              class="inputtext"
-              name="email"
-              id="email"
-              placeholder="email"
-              required
-              aria-required="true"
-            />
-          </label>
-          <br />
-          <label for="senha">
-            <input
-              type="password"
-              class="inputpassword"
-              name="senha"
-              id="senha"
-              placeholder="senha"
-              required
-              aria-required="true"
-            />
-          </label>
-          <br />
-          <form
-            action="/tela_selecao"
-            method="post"
-            enctype="multipart/form-data"
-          >
-            <!-- <button id="login" type="submit">Login</button> -->
-            <!-- 
+        <h1>Entrar</h1>
+        <label for="email">
+          <input type="text" class="inputtext" name="email" id="email" placeholder="email" required
+            aria-required="true" />
+        </label>
+        <br />
+        <label for="senha">
+          <input type="password" class="inputpassword" name="senha" id="senha" placeholder="senha" required
+            aria-required="true" />
+        </label>
+        <br />
+        <form action="/tela_selecao" method="post" enctype="multipart/form-data">
+          <!-- <button id="login" type="submit">Login</button> -->
+          <!-- 
               Por enquanto vou colocar a tag A para redirecionar para a tela de seleção
               Mas é só temporário
             -->
-            <button id="login" type="submit"><a href="src/pages/tela_selecao.html">Login</a></button>
-          </form>
-          <br />
-          <form
-            action="/tela_cadastro"
-            method="post"
-            enctype="multipart/form-data"
-          >
-            <p id="text">
-              É novo por aqui?
-              <a id="cadastro" href="src/pages/tela_cadastro.html">Cadastre-se</a>
-            </p>
-          </form>
-        </div>
+          <button id="login" type="submit"><a href="src/pages/tela_selecao.html">Login</a></button>
+        </form>
+        <br />
+        <form action="/tela_cadastro" method="post" enctype="multipart/form-data">
+          <p id="text">
+            É novo por aqui?
+            <a id="cadastro" href="src/pages/tela_cadastro.html">Cadastre-se</a>
+          </p>
+        </form>
       </div>
     </div>
-  </body>
+  </div>
+
+  <script>
+  </script>
+
+</body>
+
 </html>
