@@ -7,22 +7,6 @@ const { json } = require('body-parser');
 const saltRounds = 10;
 
 const cadastrarUsuario = async (req, res) => {
-
-    console.log(`
-    
-    
-    
-    
-    
-    `)
-    console.log(req.body)
-    console.log(`
-    
-    
-    
-    
-    
-    `)
     try {
         if (await db.Usuario.findOne({
             where: {
@@ -45,11 +29,11 @@ const cadastrarUsuario = async (req, res) => {
                 await usuario.save
             });
 
-            res.json({mensgem:'Usuario cadastrado com sucesso'})
+            res.json({status: 200, mensagem:'Usuario cadastrado com sucesso'})
         }
     } catch (error) {
         console.log(error.message)
-        res.json({ error: error.message })
+        res.json({ status: 500, mensagem: error.message })
     }
 
 };
@@ -74,18 +58,18 @@ const login = async (req, res) => {
                             usuario: usuario,
                         }, '123'
                     )
-                    res.json(token)
+                    res.json({status: 200, mensagem: 'ok', token:token})
                 } else {
                     throw new Error('Senha Inválida')
                 }
             } catch (error) {
                 console.log(error.message)
-                res.json({ error: error.message })
+                res.json({ status:500, mensagem: error.message })
             }            
         });
     } catch (error) {
         console.log(error.message)
-        res.json({ error: error.message })
+        res.json({ status: 500,mensagem: error.message })
     }
 }
 module.exports = { cadastrarUsuario, login };
