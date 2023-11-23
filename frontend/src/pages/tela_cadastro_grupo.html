@@ -1,55 +1,206 @@
 <!DOCTYPE html>
-<html lang="port">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>condominAI</title>
-    <link rel="stylesheet" href="../css/tela_cadastro_grupo.css" />
-  </head>
-  <body>
-    <div id="backgroung" role="main">
-      <div id="bloco">
-        <div>
-          <h1>Condomínio</h1>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>condominAI</title>
+  <style>
+    body {
+      display: flex;
+      max-width: 90em;
+      padding: 1em 34em 16.5em 34em;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1.166em;
+      background-color: rgba(47, 83, 115, 1);
+    }
+
+    #bloco {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 28.563em;
+      height: 32.688em;
+      flex-shrink: 0;
+      border-radius: 1.25em;
+      background-color: #f2f2f2;
+      box-shadow: 0 0.375em 0.25em 0 rgba(0, 0, 0, 0.25);
+    }
+
+    h1 {
+      color: #000;
+      font-family: Roboto;
+      font-size: 1.6em;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      text-align: center;
+    }
+
+    #nome,
+    #descricao {
+      width: 21.25em;
+      height: 2.875em;
+      flex-shrink: 0;
+      border-radius: 0.75em;
+      border: 0.125em solid #2f5373;
+      background-color: rgba(255, 255, 255, 0);
+      color: rgba(0, 0, 0, 0.72);
+      font-family: Roboto;
+      font-size: 1em;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      margin-bottom: 0.875em;
+    }
+
+    .container {
+      text-align: center;
+      margin-bottom: 0.875em;
+      color: #000;
+      font-family: Roboto;
+      font-size: 1em;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      text-align: center;
+      margin: auto;
+    }
+
+    .checkbox-label {
+      display: block;
+      margin-bottom: 0.875em;
+    }
+
+    #morador {
+      color: #000;
+      font-family: Roboto;
+      font-size: 1em;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      text-align: center;
+      margin: auto;
+    }
+
+    #continuar {
+      width: 13.333em;
+      height: 2.875em;
+      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: auto;
+      border-radius: 0.75em;
+      background: #2f5373;
+      color: #fff;
+      font-family: Roboto;
+      font-size: 1.3em;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      margin-bottom: 0.875em;
+    }
+  </style>
+  <script>
+    async function processarFormulario(event) {
+      event.preventDefault();
+
+      // var nome = document.getElementById("nome").value;
+      // var descricao = document.getElementById("descricao").value;
+      // var moradorCheckbox = document.getElementById("morador");
+
+      const grupo = {
+        nome: document.getElementById("nome").value,
+        descricao: document.getElementById("descricao").value,
+        // morador_checkbox: document.getElementById("morador")
+      }
+
+      // if (nome && descricao) {
+      //   alert("Condomínio cadastrado com sucesso!");
+      //   //Aqui poderia ter um alerta com o código aleatório do condomínio gerado pelo sistema
+      //   if (moradorCheckbox.checked) {
+      //     gerarApartamento();
+      //   }
+
+      //   redirecionar();
+      // } else {
+      //   alert("Por favor, preencha todos os campos.");
+      // }
+
+      if (grupo.nome && grupo.descricao) {
+
+        const status = await fetch('http://127.0.0.1:3000/grupos', {
+          method: "POST",
+          body: JSON.stringify(grupo),
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoxLCJub21lIjoiYnJ1bm8iLCJlbWFpbCI6ImJydW5vQHRlc3RlLmNvbSIsInNlbmhhIjoiMTIzIiwiY3JlYXRlZEF0IjoiMjAyMy0wOS0xM1QyMzo0NDozNC4zNjVaIiwidXBkYXRlZEF0IjoiMjAyMy0wOS0xM1QyMzo0NDozNC4zNjVaIiwiZGVsZXRlZEF0IjpudWxsfSwiaWF0IjoxNjk0NjQ4NzI0fQ.U1zpTvdOj0xDfNwg0-zFHOjw0a7Pc8c0dVlgCeEKP_I"
+          }
+
+        })
+          .then(async function (dados) {
+            return dados.json()
+          })
+          .then(async function (dados_convertidos) {
+            return dados_convertidos
+          })
+
+        // console.log(status)
+
+        if (status.status == 200) {
+          alert(status.mensagem)
+          redirecionar()
+        }
+      }
+
+    }
+
+    function gerarApartamento() {
+      // Lógica para gerar um apartamento
+      alert("Apartamento gerado com sucesso!");
+      redirecionar(); // Chama a função de redirecionamento após gerar o apartamento
+    }
+
+    function redirecionar() {
+      window.location.replace("tela_cadastro_subgrupo.html");
+    }
+  </script>
+</head>
+
+<body>
+  <div role="main">
+    <div id="bloco">
+      <div>
+        <h1>Condomínio</h1>
+        <form onsubmit="processarFormulario(event)">
           <label for="nome">
-            <input
-              type="text"
-              class="inputtext"
-              name="nome"
-              id="nome"
-              placeholder="Nome"
-              required
-              aria-required="true"
-            />
+            <input type="text" class="inputtext" name="nome" id="nome" placeholder="Nome" required
+              aria-required="true" />
           </label>
           <br />
           <label for="descricao">
-            <input
-              type="text"
-              class="inputtext"
-              name="descricao"
-              id="descricao"
-              placeholder="Descrição"
-              required
-              aria-required="true"
-            />
+            <input type="text" class="inputtext" name="descricao" id="descricao" placeholder="Descrição" required
+              aria-required="true" />
           </label>
           <br />
-          <div class="container">
+          <!-- <div class="container">
             <label class="checkbox-label">
               <input type="checkbox" id="morador" /> Você é morador?
             </label>
-          </div>
-          <form
-            action="/tela_cadastro_subgrupo"
-            method="post"
-            enctype="multipart/form-data"
-          >
-            <button id="continuar" type="submit">Continuar</button>
-            <br />
-          </form>
-        </div>
+          </div> -->
+          <button id="continuar" type="submit">Continuar</button>
+          <br />
+        </form>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

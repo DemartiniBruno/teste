@@ -30,12 +30,14 @@ const cadastrarSubgrupo = async (req, res) => {
         })
 
         res.json({
+            status:200,
+
             mensagem: "Apartamentos criados com sucesso"
             // ----> ANALISAR QUAL MELHOR RETORNO PARA ESSA SITUAÇÃO <----
         })
 
     } catch (error) {
-        res.json(error.message)
+        res.json({status:500, menasgem: error.message})
     }
 }
 

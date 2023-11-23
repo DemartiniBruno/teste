@@ -6,15 +6,14 @@ const global_controller = require('./global-controller')
 const cadastrarGrupo = async (req, res) => {
     try {
         const grupo = await db.Grupo.create(req.body)
-        res.json(grupo)
+        res.json({status:200, mensagem:'Sucesso'})
     } catch (error) {
-        res.json(error.message)
+        res.json({status:200, mensagem: error.message})
     }
 }
 
 // const visualizarGrupos = async (req, res) => {
 //     const usuario = await jsonWebToken.decode(req.headers.authorization, '123')
-
 //     try {
 //         const grupos = await db.Grupo.findAll({
 //             attributes: ['id', 'nome'],
