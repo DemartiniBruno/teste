@@ -1,6 +1,5 @@
 const app = require('./app.js');
 const db = require('./db/db-create.js')
-// require('dotenv').config();
 
 app.listen(3000, async () => {
     try {

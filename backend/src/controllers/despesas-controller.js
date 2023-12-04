@@ -4,8 +4,8 @@ const db = require('../db/db-create');
 const cadastraDespesa = async (req, res) => {
 
     try {
-        
-        if (typeof req.body.valor_total==="string") {
+
+        if (typeof req.body.valor_total === "string") {
 
             throw new Error('O valor informado não é um número')
 
@@ -20,10 +20,9 @@ const cadastraDespesa = async (req, res) => {
         } else {
 
             const despesa = await db.Despesas.create(req.body)
-            // console.log(despesa)
-        
+
             req.body.subgrupos_pagantes.forEach(async subgrupo_pagante => {
-                if(subgrupo_pagante.pagante){
+                if (subgrupo_pagante.pagante) {
                     await db.ErSubgruposPagantes.create({
                         despesas_id: despesa.id,
                         subgrupo_id: subgrupo_pagante.id
@@ -31,9 +30,7 @@ const cadastraDespesa = async (req, res) => {
                 }
             })
 
-            // console.log(req.body.subgrupos_pagantes)
-
-            res.json(despesa)   
+            res.json(despesa)
         }
 
     } catch (error) {
@@ -42,11 +39,34 @@ const cadastraDespesa = async (req, res) => {
 
 }
 
+const consultaDespesas = async (req, res) => {
+    try {
+        const consultaDespesa = await db.Despesas.findAll({
+            attributes: ['id','descricao', 'numero_de_parcelas', 'valor_total', 'data_vencimento'],
+            include: {
+                model: db.ErSubgruposPagantes,
+                required: false,
+                where: {
+                    subgrupo_id: req.params.subgrupo_id 
+                }
+            }
+        })
+        console.log(consultaDespesa)
+
+        res.json(consultaDespesa);
+
+    } catch (error) {
+        res.json(error.message)
+
+    }
+
+}
+
 const editarDespesa = async (req, res) => {
     try {
 
         var despesa = await db.Despesas.findOne({
-            where:{
+            where: {
                 id: req.params.despesa_id
             }
         })
@@ -59,11 +79,10 @@ const editarDespesa = async (req, res) => {
         
         `)
         console.log(despesa.dataValues)
-        //despesa = console.log(despesa.dataValues)
         despesa.descricao = req.body.descricao
         despesa.numero_de_parcelas = req.body.numero_de_parcelas
         despesa.valor_total = req.body.valor_total
-        await despesa.save({fields:['descricao', 'numero_de_parcelas','valor_total']});
+        await despesa.save({ fields: ['descricao', 'numero_de_parcelas', 'valor_total'] });
         res.json(despesa)
 
     } catch (error) {
@@ -73,5 +92,6 @@ const editarDespesa = async (req, res) => {
 
 module.exports = {
     cadastraDespesa,
-    editarDespesa
+    editarDespesa,
+    consultaDespesas
 }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>condominAI</title>
+
+  <link rel="stylesheet" href="../css/st_cadastro_grupo.css">
+  <script src="../script/ao_cadastro_grupo.js"></script>
+</head>
+
+<body>
+  <div role="main">
+    <div id="bloco">
+      <div>
+        <h1>Condomínio</h1>
+        <form onsubmit="processarFormulario(event)">
+          <label for="nome">
+            <input type="text" class="inputtext" name="nome" id="nome" placeholder="Nome" required
+              aria-required="true" />
+          </label>
+          <br />
+          <label for="descricao">
+            <input type="text" class="inputtext" name="descricao" id="descricao" placeholder="Descrição" required
+              aria-required="true" />
+          </label>
+          <br />
+          <!-- <div class="container">
+            <label class="checkbox-label">
+              <input type="checkbox" id="morador" /> Você é morador?
+            </label>
+          </div> -->
+          <button id="continuar" type="submit">Continuar</button>
+          <br />
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

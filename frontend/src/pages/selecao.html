@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CondominAI</title>
+    <script src="../script/ao_selecao.js"></script>
+
     <style>
         body {
           margin: 0;
@@ -85,12 +87,13 @@
     <div class="bloco">
       <h1>Entrar em um condomínio</h1>
       <input
+        id="input_entrar"
         class="input_padrao"
         type="text"
         name="cAcess"
         placeholder="código de acesso"
       />
-      <button class="botao_padrao">entrar</button>
+      <button onclick="acessar_subgrupo()" id="botao_entrar" class="botao_padrao">entrar</button>
     </div>
 
     <div class="bloco">
@@ -104,27 +107,10 @@
 
     <script>
         function redirecionar() {
-            window.location.href = "tela_cadastro_grupo.html";
+            window.location.href = "cadastro_grupo.html";
         }
     </script>
     
     </div>
-    <script>
-      document
-        .getElementById("botaoEntrar")
-        .addEventListener("click", function () {
-          var codigoAcesso = document.getElementById("codigoAcesso").value;
-          if (codigoAcesso === "codigo_correto") {
-            console.log("Código de acesso válido");
-          } else {
-            console.log("Código de acesso inválido");
-          }
-        });
-      document
-        .getElementById("botaoCadastrar")
-        .addEventListener("click", function () {
-          console.log("Botão Cadastrar foi clicado!");
-        });
-    </script>
   </body>
 </html>

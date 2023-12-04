@@ -30,18 +30,19 @@ const cadastrarSubgrupo = async (req, res) => {
         })
 
         res.json({
-            status:200,
+            status: 200,
 
             mensagem: "Apartamentos criados com sucesso"
             // ----> ANALISAR QUAL MELHOR RETORNO PARA ESSA SITUAÇÃO <----
         })
 
     } catch (error) {
-        res.json({status:500, menasgem: error.message})
+        res.json({ status: 500, menasgem: error.message })
     }
 }
 
 const acessarSubgrupo = async (req, res) => {
+    console.log(req.body)
 
     try {
         const usuario = global_controller.informacoes_usuario(req.headers.authorization)
@@ -52,42 +53,35 @@ const acessarSubgrupo = async (req, res) => {
             }
         })
 
-        if(subgrupo){
+        if (subgrupo) {
 
             criarRelacao(usuario, subgrupo, req.body.permissao_adm)
 
-            res.json({mensagem: "Vinculo criado"})
+            res.json({ status: 200, mensagem: "Vinculo criado" })
         } else {
             throw new Error('Apartamento não encontrado')
         }
-        
+
     } catch (error) {
-        res.json(error.message)
+        res.json({ status: 500, mensagem: error.message })
     }
-
-
-
-    // res.json({ mensagem: 'Usuario vinculado ao subgrupo' })
 }
 
 const criarRelacao = async (usuario, subgrupo, permissao_adm) => {
 
-    if(permissao_adm){
+    if (permissao_adm) {
         await db.ErUsuarioDoSubgrupo.create({
             subgrupo_id: subgrupo.id,
             usuario_id: usuario.usuario.id,
             permissao_adm: true
         })
-    } else{
+    } else {
         await db.ErUsuarioDoSubgrupo.create({
             subgrupo_id: subgrupo.id,
             usuario_id: usuario.usuario.id,
-            // permissao_adm: true
         })
     }
 }
-
-//Funções GET para visualização de informações
 
 const visualizarSubgrupo = async (req, res) => {
     const usuario = global_controller.informacoes_usuario(req.headers.authorization)
@@ -102,7 +96,7 @@ const visualizarSubgrupo = async (req, res) => {
             }
         },
         where: {
-            id: req.params.id
+            id: req.params.subgrupo_id
         }
     })
 
@@ -111,7 +105,7 @@ const visualizarSubgrupo = async (req, res) => {
 
 const editarSubgrupo = async (req, res) => {
     try {
-        
+
         var editarsubgrupo = await db.Subgrupo.findOne({
             where: {
                 id: req.params.subgrupo_id
@@ -119,11 +113,11 @@ const editarSubgrupo = async (req, res) => {
         })
         editarsubgrupo.nome = req.body.nome
         editarsubgrupo.descricao = req.body.descricao
-        await editarsubgrupo.save({fields:['nome','descricao']})
+        await editarsubgrupo.save({ fields: ['nome', 'descricao'] })
         res.json(editarsubgrupo)
     } catch (error) {
         res.json(error.message)
-        
+
     }
 }
 

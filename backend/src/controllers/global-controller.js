@@ -9,7 +9,6 @@ var options = {}
 
 //Função para criar um código aleatório de 5 digitos para ser vinculado ao apartamento
 const codigo_acesso = () => {
-    //Talvez usar a biblioteca code_random
     try {
         const codigo = generator.generateCodes(pattern, howMany, options);
 
@@ -31,14 +30,8 @@ const codigo_acesso = () => {
 const informacoes_usuario = (usuario_codificado) => {
     return usuario_decodificado = jsonWebToken.decode(usuario_codificado, '123')
 }
-//organizando pensamentos
-//const editaDados = (req, res) => {
-//    const dados = req.body.findAll();
- //   console.log(dados)
- //   const informacoes = db.dados.findAll();
-//}
+
 module.exports = {
     codigo_acesso,
     informacoes_usuario,
-    //editaDados
 }
