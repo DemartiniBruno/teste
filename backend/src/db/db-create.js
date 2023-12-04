@@ -82,7 +82,7 @@ const Despesas = sequelize.define('despesa', {
         type: DataTypes.DATE
     },
     data_vencimento: {
-        type: DataTypes.DATE
+        type: DataTypes.STRING
     },
     status_ativo: {
         type: DataTypes.BOOLEAN,

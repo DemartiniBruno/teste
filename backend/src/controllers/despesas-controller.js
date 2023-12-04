@@ -2,7 +2,7 @@ const { STRING } = require('sequelize');
 const db = require('../db/db-create');
 
 const cadastraDespesa = async (req, res) => {
-
+    console.log(req.body)
     try {
 
         if (typeof req.body.valor_total === "string") {
@@ -26,11 +26,16 @@ const cadastraDespesa = async (req, res) => {
                     await db.ErSubgruposPagantes.create({
                         despesas_id: despesa.id,
                         subgrupo_id: subgrupo_pagante.id
+                        
                     })
                 }
             })
 
+            // res.json(despesa)
+
+            // const despesa = await db.Despesas.create(req.body)
             res.json(despesa)
+
         }
 
     } catch (error) {
@@ -61,6 +66,37 @@ const consultaDespesas = async (req, res) => {
     }
 
 }
+
+const consultaDespesas_grupo = async (req, res) => {
+    try {
+        const despesas_gruopo = await db.Despesas.findAll({
+            attributes: ['id','descricao', 'numero_de_parcelas', 'valor_total', 'data_vencimento'],
+            include: {
+                model: db.ErSubgruposPagantes,
+                required: false,
+                include: {
+                    model: db.Subgrupo,
+                    required: false,
+                    include: {
+                        model: db.Grupo,
+                        required: false,
+                        where:{
+                            id:req.params.grupo_id
+                        }
+                    }
+                }
+            }
+        })
+
+        res.json(despesas_gruopo);
+
+    } catch (error) {
+        res.json(error.message)
+
+    }
+
+}
+
 
 const editarDespesa = async (req, res) => {
     try {
@@ -93,5 +129,6 @@ const editarDespesa = async (req, res) => {
 module.exports = {
     cadastraDespesa,
     editarDespesa,
-    consultaDespesas
+    consultaDespesas,
+    consultaDespesas_grupo
 }

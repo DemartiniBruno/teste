@@ -47,6 +47,12 @@ const get_subgrupo = async () => {
                         return dados_convertidos
                     })
 
+                console.log(grupo)
+                
+                const titulo_grupo = document.createElement("h1")
+                titulo_grupo.innerText = grupo[0].nome
+                document.querySelector(".nome_grupo").appendChild(titulo_grupo)
+
 
                 grupo[0].subgrupos.forEach(element => {
 
