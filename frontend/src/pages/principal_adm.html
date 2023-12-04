@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>condominAI</title>
-   
     <script src="../script/ao_grupo.js"></script>
     <style>
       body {
@@ -117,7 +116,17 @@
         align-items: center;
       }
     </style>
-  
+  <script>
+    function redirecionarInicio(event) {
+      event.preventDefault();
+      window.location.replace("principal_adm.html");
+    }
+
+    function redirecionarDespesa(event) {
+      event.preventDefault();
+      window.location.replace("despesas_gerais.html");
+    }
+  </script>
   </head>
   <body onload="get_subgrupo()">
     <div role="main" class="container">
