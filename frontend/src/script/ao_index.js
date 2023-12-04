@@ -46,7 +46,7 @@ const logar = async () => {
 
                 if (relacao) {
                     if (relacao.permissao_adm) {
-                        location.href = './src/pages/grupo.html'
+                        location.href = './src/pages/principal_adm.html'
                     } else {
                         location.href = './src/pages/subgrupo.html'
                     }
