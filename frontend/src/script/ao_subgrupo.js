@@ -96,7 +96,12 @@ const get_despesasApartamento = async () => {
 
 
 
-            location.href = './selecao.html'
+            
+           location.href = './selecao.html'
+           
+
+            
+            
 
         }
     } catch (error) {

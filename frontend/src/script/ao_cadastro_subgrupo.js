@@ -75,7 +75,7 @@ function adicionarInput() {
 
       alert("Apartamentos adicionados com sucesso!");
 
-      location.replace("grupo.html")
+      location.replace("principal_adm.html")
     } else {
       alert("Por favor, preencha todos os campos antes de confirmar.");
     }

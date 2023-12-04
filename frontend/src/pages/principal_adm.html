@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>condominAI</title>
+   
+    <script src="../script/ao_grupo.js"></script>
     <style>
       body {
         margin: 0;
@@ -84,7 +86,7 @@
         margin-bottom: 1.25rem;
       }
 
-      #conteudo {
+      #apartamentos {
         margin: 0;
         padding: 0;
         display: grid;
@@ -93,7 +95,7 @@
         justify-content: space-around;
       }
 
-      .quadrado {
+      .bloco_apartamento {
         color: #000;
         font-family: Roboto;
         font-size: 1.5rem;
@@ -115,22 +117,7 @@
         align-items: center;
       }
     </style>
-    <script>
-      function redirecionarInicio(event) {
-        event.preventDefault();
-        window.location.replace("tela_principal_adm.html");
-      }
-      
-      function redirecionarDespesa(event) {
-        event.preventDefault();
-        window.location.replace("tela_cadastro_despesas.html");
-      }
-
-      function redirecionarPagina(pagina) {
-        // Implemente a lógica para redirecionar para a página desejada
-        alert("Redirecionando para " + pagina);
-      }
-    </script>
+  
   </head>
   <body onload="get_subgrupo()">
     <div role="main" class="container">
@@ -144,56 +131,7 @@
       </div>
       <div class="tela_administrador">
         <h1>Nome do condomínio</h1>
-        <div id="conteudo">
-          <div class="quadrado" onclick="redirecionarPagina('pagina1')">
-            Nome <br />
-            Descrição
-          </div>
-          <div class="quadrado" onclick="redirecionarPagina('pagina2')">
-            Nome <br />
-            Descrição
-          </div>
-          <div class="quadrado" onclick="redirecionarPagina('pagina3')">
-            Nome <br />
-            Descrição
-          </div>
-          <div class="quadrado" onclick="redirecionarPagina('pagina4')">
-            Nome <br />
-            Descrição
-          </div>
-          <div class="quadrado" onclick="redirecionarPagina('pagina5')">
-            Nome <br />
-            Descrição
-          </div>
-          <div class="quadrado" onclick="redirecionarPagina('pagina6')">
-            Nome <br />
-            Descrição
-          </div>
-          <div class="quadrado" onclick="redirecionarPagina('pagina7')">
-            Nome <br />
-            Descrição
-          </div>
-          <div class="quadrado" onclick="redirecionarPagina('pagina8')">
-            Nome <br />
-            Descrição
-          </div>
-          <div class="quadrado" onclick="redirecionarPagina('pagina9')">
-            Nome <br />
-            Descrição
-          </div>
-          <div class="quadrado" onclick="redirecionarPagina('pagina10')">
-            Nome <br />
-            Descrição
-          </div>
-          <div class="quadrado" onclick="redirecionarPagina('pagina11')">
-            Nome <br />
-            Descrição
-          </div>
-          <div class="quadrado" onclick="redirecionarPagina('pagina12')">
-            Nome <br />
-            Descrição
-          </div>
-        </div>
+        <div id="apartamentos">
       </div>
     </div>
   </body>
