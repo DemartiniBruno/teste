@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>condominAI</title>
+    <style>
+      body {
+        margin: 0;
+        font-size: 16px;
+      }
+
+      .container {
+        display: flex;
+        height: 100vh;
+      }
+
+      .menu_lateral {
+        width: 20%;
+        height: 100vh;
+        flex-shrink: 0;
+        background: var(--COR-PRIMARIA, #2f5373);
+        box-shadow: 0.375rem 0.25rem 0.75rem 0rem rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .botao_inicio {
+        width: 100%;
+        height: 4.875rem;
+        background: var(--COR-SECUNDARIA, #8fa9bf);
+        color: var(--COR-QUARTENARIA, #f2f2f2);
+        font-family: Roboto;
+        font-size: 1.875rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 0.125rem solid #2f5373;
+        outline: none;
+        cursor: pointer;
+      }
+
+      .botao_despesa {
+        width: 100%;
+        height: 4.875rem;
+        background: var(--COR-SECUNDARIA, #8fa9bf);
+        color: var(--COR-QUARTENARIA, #f2f2f2);
+        font-family: Roboto;
+        font-size: 1.875rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        outline: none;
+        cursor: pointer;
+      }
+
+      .tela_administrador {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        height: 100vh;
+        background-color: #f2f2f2;
+        width: 80%;
+        padding: 1.875rem;
+        box-sizing: border-box;
+        margin: 0 auto;
+      }
+
+      .cadastro_despesa {
+        width: 800px;
+        height: 37.5em;
+        flex-shrink: 0;
+        box-sizing: border-box;
+        border-radius: 1.25em;
+        background: #f2f2f2;
+        box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.25);
+        margin: auto;
+        flex-direction: column;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+      }
+
+      #input_descricao {
+        width: 700px;
+        height: 46px;
+        flex-shrink: 0;
+        border-radius: 12px;
+        border: 3px solid #2f5373;
+        background: rgba(255, 255, 255, 0);
+        color: #2f5373;
+        color: rgba(0, 0, 0, 0.72);
+        font-family: Roboto;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-top: 20px;
+        margin-left: 50px;
+        margin-right: 50px;
+      }
+
+      .input_valor {
+        box-sizing: border-box;
+        width: 345px;
+        height: 46px;
+        flex-shrink: 0;
+        border-radius: 12px;
+        border: 3px solid #2f5373;
+        background: rgba(255, 255, 255, 0);
+        color: rgba(0, 0, 0, 0.72);
+        font-family: Roboto;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-right: 15px;
+      }
+
+      .input_prazo {
+        box-sizing: border-box;
+        width: 345px;
+        height: 46px;
+        flex-shrink: 0;
+        border-radius: 12px;
+        border: 3px solid #2f5373;
+        background: rgba(230, 181, 181, 0);
+        color: rgba(0, 0, 0, 0.72);
+        font-family: Roboto;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+      .checkbox {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        margin-bottom: 40px;
+        align-items: center;
+      }
+
+      .checkboxItem {
+        width: 25%;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        color: #000;
+        font-family: Roboto;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        margin-left: 50px;
+      }
+
+      input[type="checkbox"] {
+        margin-right: 10px;
+        color: #000;
+        font-family: Roboto;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+      }
+
+      .botao_concluir {
+        width: 12.5em;
+        height: 46px;
+        border-radius: 12px;
+        background: #2f5373;
+        color: #fff;
+        font-family: Roboto;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        margin-bottom: 20px;
+        margin-right: 15px;
+        padding: 10px 20px;
+        margin-left: 10px;
+      }
+
+      .botao_cancelar {
+        width: 12.5em;
+        height: 46px;
+        border-radius: 12px;
+        background: #2f5373;
+        color: #fff;
+        font-family: Roboto;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        margin-bottom: 20px;
+        margin-right: 50px;
+        margin-left: auto;
+        padding: 10px 20px;
+        margin-left: 10px;
+      }
+    </style>
+    <script>
+      function verificarCampos() {
+        var descricao = document.getElementById("input_descricao").value;
+        var valor = document.getElementById("input_valor").value;
+        var prazo = document.getElementById("input_prazo").value;
+
+        if (descricao === "" || valor === "" || prazo === "") {
+          alert("Preencha todos os campos antes de concluir.");
+          return;
+        }
+
+        selecionarTodosCheckboxes();
+        redirecionarConcluir();
+      }
+
+      function selecionarTodosCheckboxes() {
+        var checkboxes = document.querySelectorAll('[type="checkbox"]');
+        checkboxes.forEach(function (checkbox) {
+          checkbox.checked = true;
+        });
+      }
+
+      window.onload = function () {
+        document.getElementById("input_descricao").focus();
+      };
+
+      function redirecionarInicio() {
+        window.location.replace("tela_principal_adm.html");
+      }
+
+      function redirecionarDespesa() {
+        window.location.replace("tela_cadastro_despesas.html");
+      }
+
+      function redirecionarConcluir(event) {
+        event.preventDefault();
+
+        // Lógica para salvar os dados aqui (substitua esta parte pelo seu código de salvamento)
+
+        // Exemplo: salvar dados em uma variável fictícia chamada dadosSalvos
+        var dadosSalvos = {
+          // Substitua isso pelos dados que você deseja salvar
+          descricao: document.getElementById("descricao").value,
+          valor: document.getElementById("valor").value,
+          // Adicione mais campos conforme necessário
+        };
+
+        // Simulação de uma chamada assíncrona para salvar dados
+        salvarDadosNoServidor(dadosSalvos)
+          .then(function () {
+            // Após salvar com sucesso, redirecione para a tela de listagem
+            window.location.replace("tela_listagem_despesas_gerais.html");
+          })
+          .catch(function (error) {
+            // Trate erros ao salvar, se necessário
+            console.error("Erro ao salvar dados:", error);
+            // Redirecione para a tela principal em caso de erro
+            window.location.replace("tela_principal_adm.html");
+          });
+      }
+
+      function redirecionarCancelar(event) {
+        event.preventDefault();
+
+        // Não há lógica de salvamento aqui, apenas redirecione para a tela principal
+        window.location.replace("tela_principal_adm.html");
+      }
+
+      // Função fictícia para simular uma chamada assíncrona para salvar dados no servidor
+      function salvarDadosNoServidor(dados) {
+        return new Promise(function (resolve, reject) {
+          // Simule um atraso de 1 segundo para simular uma chamada assíncrona ao servidor
+          setTimeout(function () {
+            // Aqui você pode adicionar lógica de salvamento real, como uma chamada AJAX
+            console.log("Dados salvos com sucesso:", dados);
+            resolve();
+          }, 1000);
+        });
+      }
+
+      function redirecionarPagina(pagina) {
+        alert("Redirecionando para " + pagina);
+      }
+    </script>
+  </head>
+  <body>
+    <div role="main" class="container">
+      <div class="menu_lateral">
+        <button class="botao_inicio" onclick="redirecionarInicio()">
+          Início
+        </button>
+        <button class="botao_despesa" onclick="redirecionarDespesa()">
+          Despesas
+        </button>
+      </div>
+      <div class="tela_administrador">
+        <div class="cadastro_despesa">
+          <div>
+            <label for="input_descricao">
+              <input
+                type="text"
+                id="input_descricao"
+                placeholder="Descrição da Despesa"
+              />
+            </label>
+          </div>
+          <div>
+            <label for="input_valor">
+              <input
+                type="text"
+                id="input_valor"
+                class="input_valor"
+                placeholder="Valor da despesa"
+              />
+            </label>
+            <label for="input_prazo">
+              <input
+                type="text"
+                id="input_prazo"
+                class="input_prazo"
+                placeholder="Prazo de pagamento"
+              />
+            </label>
+          </div>
+          <div class="checkbox" role="group" aria-labelledby="checkbox-group">
+            <div class="checkboxItem">
+              <input type="checkbox" /> Apartamento 001
+            </div>
+            <div class="checkboxItem">
+              <input type="checkbox" /> Apartamento 002
+            </div>
+            <div class="checkboxItem">
+              <input type="checkbox" /> Apartamento 003
+            </div>
+            <div class="checkboxItem">
+              <input type="checkbox" /> Apartamento 004
+            </div>
+            <div class="checkboxItem">
+              <input type="checkbox" /> Apartamento 101
+            </div>
+            <div class="checkboxItem">
+              <input type="checkbox" /> Apartamento 102
+            </div>
+            <div class="checkboxItem">
+              <input type="checkbox" /> Apartamento 103
+            </div>
+            <div class="checkboxItem">
+              <input type="checkbox" /> Apartamento 104
+            </div>
+            <div class="checkboxItem">
+              <input type="checkbox" /> Apartamento 201
+            </div>
+            <div class="checkboxItem">
+              <input type="checkbox" /> Apartamento 202
+            </div>
+            <div class="checkboxItem">
+              <input type="checkbox" /> Apartamento 203
+            </div>
+            <div class="checkboxItem">
+              <input type="checkbox" /> Apartamento 204
+            </div>
+            <div class="checkboxItem"><input type="checkbox" /> Todos</div>
+          </div>
+          <div>
+            <button class="botao_cancelar" onclick="redirecionarCancelar()">
+              Cancelar
+            </button>
+            <button class="botao_concluir" onclick="redirecionarConcluir()">
+              Concluir
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

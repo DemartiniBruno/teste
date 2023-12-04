@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>condominAI</title>
+    <style>
+      body {
+        margin: 0;
+        font-size: 16px;
+      }
+
+      .container {
+        display: flex;
+        height: 100vh;
+      }
+
+      .menu_lateral {
+        width: 20%;
+        height: 100vh;
+        flex-shrink: 0;
+        background: var(--COR-PRIMARIA, #2f5373);
+        box-shadow: 0.375rem 0.25rem 0.75rem 0rem rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .botao_inicio {
+        width: 100%;
+        height: 4.875rem;
+        background: var(--COR-SECUNDARIA, #8fa9bf);
+        color: var(--COR-QUARTENARIA, #f2f2f2);
+        font-family: Roboto;
+        font-size: 1.875rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 0.125rem solid #2f5373;
+        outline: none;
+        cursor: pointer;
+      }
+
+      h1 {
+        color: #000;
+        font-family: Roboto;
+        font-size: 1.875rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        margin-bottom: 1.25rem;
+      }
+
+      .tela_usuario {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        height: 100vh;
+        background-color: #f2f2f2;
+        width: 80%;
+        padding: 1.875rem;
+        box-sizing: border-box;
+      }
+
+      .bloco_visualizacao {
+        width: 50em;
+        height: 37.5em;
+        flex-shrink: 0;
+        box-sizing: border-box;
+        border-radius: 1.25em;
+        background: #f2f2f2;
+        box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.25);
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 1rem;
+        padding: 1rem;
+        flex-direction: column;
+        display: flex;
+      }
+
+      .table_visualizacao {
+        margin-bottom: 390px;
+      }
+
+      .row_titulos {
+        color: #000;
+        font-family: Roboto;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        font-weight: bold;
+      }
+
+      .row_informacoes {
+        color: #000;
+        font-family: Roboto;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+
+      .table_pagar {
+        margin-top: 1rem;
+      }
+
+      .row_pagar {
+        font-family: Roboto;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+
+      .valor_pagar {
+        font-size: 24px;
+        font-family: Roboto;
+        color: #000;
+        margin-bottom: 0.5rem;
+      }
+
+      .botao_pagar {
+        width: 200px;
+        height: 46px;
+        flex-shrink: 0;
+        border-radius: 12px;
+        background: #2f5373;
+        font-family: Roboto;
+        padding: 0.5rem 1rem;
+        font-size: 24px;
+        background-color: #2f5373;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+    <script>
+      function redirecionarInicio(event) {
+        event.preventDefault();
+        window.location.replace("tela_despesas_usuario.html");
+      }
+
+      function notificarPagamento() {
+        // Lógica para registrar o pagamento no servidor
+        // Enviar uma requisição Ajax, por exemplo
+        // Aqui, estou usando o método fetch como exemplo
+        fetch("/api/registrar_pagamento", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            usuarioId: "ID_DO_USUARIO",
+            despesaId: "ID_DA_DESPESA",
+          }),
+        })
+          .then((response) => {
+            if (response.ok) {
+              // Notificação bem-sucedida
+              mostrarNotificacao("Pagamento registrado com sucesso!");
+            } else {
+              // Notificação de falha
+              mostrarNotificacao("Falha ao registrar o pagamento.");
+            }
+          })
+          .catch((error) => {
+            console.error("Erro ao registrar o pagamento:", error);
+          });
+      }
+
+      function mostrarNotificacao(mensagem) {
+        // Implementar lógica para mostrar uma notificação
+        // Pode usar bibliotecas como toastr, SweetAlert, ou outras
+        alert(mensagem);
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="menu_lateral">
+        <form onsubmit="redirecionarInicio(event)">
+          <button class="botao_inicio" type="submit">Início</button>
+        </form>
+      </div>
+      <div role="main" class="tela_usuario">
+        <h1>Nome / descrição do apartamento</h1>
+        <div class="bloco_visualizacao">
+          <table class="table_visualizacao">
+            <tr class="row_titulos">
+              <td style="width: 50%">Despesa</td>
+              <td style="width: 25%">Valor geral</td>
+              <td style="width: 25%">Valor rateado</td>
+            </tr>
+            <tr class="row_informacoes">
+              <td style="width: 50%">Despesa para exemplo</td>
+              <td style="width: 25%">R$...</td>
+              <td style="width: 25%">R$...</td>
+            </tr>
+          </table>
+          <br />
+          <table class="table_pagar">
+            <tr class="row_pagar">
+              <td style="text-align: left" class="valor_pagar">
+                Valor à pagar R$...
+              </td>
+              <td style="text-align: right">
+                <form onsubmit="notificarPagamento(event)">
+                  <button class="botao_pagar" type="onsubmit">Pagar</button>
+                </form>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
