@@ -173,8 +173,9 @@
         window.location.replace("cadastro_despesas.html");
       }
     </script>
+    <script src="../script/ao_despesas_gerais.js"></script>
   </head>
-  <body>
+  <body onload="carregar_desesas_grupo()">
     <div role="main" class="container">
       <div class="menu_lateral">
         <form onsubmit="redirecionarInicio(event)">
@@ -193,6 +194,15 @@
               </tr>
              
             </table>
+
+
+
+            <div class="despesas_gerais">
+
+            </div>
+
+
+            
             <br />
           <table class="table_incluir">
             <tr class="row_incluir">
