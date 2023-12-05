@@ -71,6 +71,9 @@ const get_subgrupo = async () => {
                     btn_abrir.setAttribute("id", element.id)
                     btn_abrir.addEventListener("click",function(){
                         // REDIRECIONAR PARA O SUBGRUPO DE ACORDO COM O ID DO BOTÃO+
+                        localStorage.setItem("grupo_id", element.id)
+                        location.href = './subgrupo.html'
+
                     })
                     btn_abrir.innerText = "abrir"
 

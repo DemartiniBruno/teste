@@ -85,20 +85,35 @@ const criarRelacao = async (usuario, subgrupo, permissao_adm) => {
 
 const visualizarSubgrupo = async (req, res) => {
     const usuario = global_controller.informacoes_usuario(req.headers.authorization)
-
-    const subgrupo = await db.Subgrupo.findOne({
-        include: {
-            required: true,
-            model: db.ErUsuarioDoSubgrupo,
-            attributes: [],
-            where: {
-                usuario_id: usuario.usuario.id
-            }
-        },
+    const relacao = await db.ErUsuarioDoSubgrupo.findOne({
         where: {
-            id: req.params.subgrupo_id
+            usuario_id: usuario.usuario.id,
         }
     })
+
+    var subgrupo
+
+    if (relacao.permissao_adm) {
+        subgrupo = await db.Subgrupo.findOne({
+            where: {
+                id: req.params.subgrupo_id
+            }
+        })
+    } else {
+        subgrupo = await db.Subgrupo.findOne({
+            include: {
+                required: true,
+                model: db.ErUsuarioDoSubgrupo,
+                attributes: [],
+                where: {
+                    usuario_id: usuario.usuario.id,
+                }
+            },
+            where: {
+                id: req.params.subgrupo_id
+            }
+        })
+    }
 
     res.json(subgrupo)
 }
