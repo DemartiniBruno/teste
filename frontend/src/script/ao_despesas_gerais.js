@@ -59,7 +59,6 @@ const carregar_desesas_grupo = async () => {
                 valor_total.setAttribute("class", "valor_despesa")
                 // FORMATAR O VALOR TOTAL PARA FICAR COMO R$
 
-
                 const container_despesa = document.createElement("div")
                 container_despesa.appendChild(titulo_descricao)
                 container_despesa.appendChild(valor_total)

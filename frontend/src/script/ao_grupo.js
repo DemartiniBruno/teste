@@ -63,6 +63,8 @@ const get_subgrupo = async () => {
                     apartamento.innerText = element.nome
                     const descricao = document.createElement("p")
                     descricao.innerText = element.descricao
+                    const codigo_acesso = document.createElement("p")
+                    codigo_acesso.innerText = element.codigo_acesso
 
                     const btn_abrir = document.createElement("button")
                     btn_abrir.setAttribute("class", "btn_abrir")
@@ -74,6 +76,7 @@ const get_subgrupo = async () => {
 
                     bloco.appendChild(apartamento)
                     bloco.appendChild(descricao)
+                    bloco.appendChild(codigo_acesso)
                     bloco.appendChild(btn_abrir)
 
                     document.getElementById("apartamentos").appendChild(bloco)
