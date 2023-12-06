@@ -118,7 +118,7 @@ const get_despesasApartamento = async () => {
             despesas.forEach(element => {
 
                 console.log(element)
-                valor_total_geral = parseFloat(valor_total_geral)+parseFloat(element.valor_total)
+                valor_total_geral = parseFloat(valor_total_geral)+parseFloat(element.er_subgrupos_pagantes[0].valor_rateado)
 
                 const despesa = document.createElement("tr")
                 despesa.setAttribute("class", "row_informacoes")
@@ -144,11 +144,12 @@ const get_despesasApartamento = async () => {
                 // console.log(document.querySelector(".table_visualizacao"))
             });
 
-            // VALOR TOTAL GERAL
+
+            // VALOR TOTAL RATEADO
             console.log(valor_total_geral)
             const var_total_geral = document.createElement("p")
-            var_total_geral.innerText = valor_total_geral
-            document.querySelector(".table_visualizacao").appendChild(var_total_geral)
+            var_total_geral.innerText = ` Valor à pagar R$: ${valor_total_geral}`
+            document.getElementById("valor_total_rateado").appendChild(var_total_geral)
             
 
         } else {
