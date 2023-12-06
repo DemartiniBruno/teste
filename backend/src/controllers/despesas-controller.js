@@ -2,9 +2,9 @@ const { STRING } = require('sequelize');
 const db = require('../db/db-create');
 
 const cadastraDespesa = async (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     try {
-
+        var contador = 0
         if (typeof req.body.valor_total === "string") {
 
             throw new Error('O valor informado não é um número')
@@ -21,19 +21,24 @@ const cadastraDespesa = async (req, res) => {
 
             const despesa = await db.Despesas.create(req.body)
 
-            req.body.subgrupos_pagantes.forEach(async subgrupo_pagante => {
-                if (subgrupo_pagante.pagante) {
-                    await db.ErSubgruposPagantes.create({
-                        despesas_id: despesa.id,
-                        subgrupo_id: subgrupo_pagante.id
-                        
-                    })
+            req.body.subgrupos_pagantes.forEach(async (element) => {
+                if (element.pagante) {
+                    contador++
                 }
             })
 
-            // res.json(despesa)
+            req.body.subgrupos_pagantes.forEach(async (element) => {
+                if (element.pagante) {
+                    await db.ErSubgruposPagantes.create({
+                        despesas_id: despesa.id,
+                        subgrupo_id: element.subgrupo_id,
+                        valor_rateado: despesa.valor_total/contador
+                    })
+                }
+                console.log(element)
+                console.log(contador)
+            })
 
-            // const despesa = await db.Despesas.create(req.body)
             res.json(despesa)
 
         }
@@ -47,12 +52,12 @@ const cadastraDespesa = async (req, res) => {
 const consultaDespesas = async (req, res) => {
     try {
         const consultaDespesa = await db.Despesas.findAll({
-            attributes: ['id','descricao', 'numero_de_parcelas', 'valor_total', 'data_vencimento'],
+            attributes: ['id', 'descricao', 'numero_de_parcelas', 'valor_total', 'data_vencimento'],
             include: {
                 model: db.ErSubgruposPagantes,
                 required: true,
                 where: {
-                    subgrupo_id: req.params.subgrupo_id 
+                    subgrupo_id: req.params.subgrupo_id
                 }
             }
         })
@@ -70,7 +75,7 @@ const consultaDespesas = async (req, res) => {
 const consultaDespesas_grupo = async (req, res) => {
     try {
         const despesas_gruopo = await db.Despesas.findAll({
-            attributes: ['id','descricao', 'numero_de_parcelas', 'valor_total', 'data_vencimento'],
+            attributes: ['id', 'descricao', 'numero_de_parcelas', 'valor_total', 'data_vencimento'],
             include: {
                 model: db.ErSubgruposPagantes,
                 required: false,
@@ -80,8 +85,8 @@ const consultaDespesas_grupo = async (req, res) => {
                     include: {
                         model: db.Grupo,
                         required: false,
-                        where:{
-                            id:req.params.grupo_id
+                        where: {
+                            id: req.params.grupo_id
                         }
                     }
                 }
@@ -94,6 +99,10 @@ const consultaDespesas_grupo = async (req, res) => {
         res.json(error.message)
 
     }
+
+}
+
+const valor_rateado_subgrupo = async (req, res) => {
 
 }
 
@@ -130,5 +139,6 @@ module.exports = {
     cadastraDespesa,
     editarDespesa,
     consultaDespesas,
-    consultaDespesas_grupo
+    consultaDespesas_grupo,
+    valor_rateado_subgrupo
 }

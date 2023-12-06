@@ -32,8 +32,6 @@ const acessar_subgrupo = async () => {
 
     try {
 
-        //CRIAR VALIDAÇÃO DE SE O CARA JÁ TIVER RELAÇÃO COM ALGUM APARTAMENTO
-
         const status = await fetch('http://127.0.0.1:3000/grupos/acessar/', {
             method: "POST",
             body: JSON.stringify(codigo_subgrupo),

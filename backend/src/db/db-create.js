@@ -92,7 +92,12 @@ const Despesas = sequelize.define('despesa', {
 }, { sequelize, paranoid: true })
 
 
-const ErSubgruposPagantes = sequelize.define('er_subgrupos_pagantes', {}, { sequelize, paranoid: true })
+const ErSubgruposPagantes = sequelize.define('er_subgrupos_pagantes', {
+    valor_rateado: {
+        type: DataTypes.NUMERIC,
+        allowNull: true
+    },
+}, { sequelize, paranoid: true })
 Subgrupo.hasMany(ErSubgruposPagantes,{ foreignKey: 'subgrupo_id'})
 ErSubgruposPagantes.belongsTo(Subgrupo, { foreignKey: 'subgrupo_id' })
 Despesas.hasMany(ErSubgruposPagantes, {foreignKey: 'despesas_id'})
