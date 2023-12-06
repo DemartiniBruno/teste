@@ -50,7 +50,7 @@ const carregar_desesas_grupo = async () => {
             console.log(despesas)
             despesas.forEach(element => {
                 console.log(element)
-                const titulo_descricao = document.createElement("p")
+                const titulo_descricao = document.createElement("tr")
                 titulo_descricao.innerText = element.descricao
                 titulo_descricao.setAttribute("class", "descricao_despesa")
 
@@ -59,12 +59,14 @@ const carregar_desesas_grupo = async () => {
                 valor_total.setAttribute("class", "valor_despesa")
                 // FORMATAR O VALOR TOTAL PARA FICAR COMO R$
 
-                const container_despesa = document.createElement("div")
-                container_despesa.appendChild(titulo_descricao)
-                container_despesa.appendChild(valor_total)
+                const descricao_despesa = document.createElement("tr")
+                descricao_despesa.appendChild(titulo_descricao)
+                const valor_despesa = document.createElement("tr")
+                valor_despesa.appendChild(valor_total)
 
 
-                document.querySelector(".despesas_gerais").appendChild(container_despesa)
+                document.querySelector(".descricao").appendChild(descricao_despesa)
+                document.querySelector(".valor").appendChild(valor_despesa)
             });
 
         } else {
@@ -79,3 +81,12 @@ const carregar_desesas_grupo = async () => {
 
     }
 }
+function redirecionarInicio(event) {
+    event.preventDefault();
+    window.location.replace("principal_adm.html");
+  }
+
+  function redirecionarDespesa(event) {
+    event.preventDefault();
+    window.location.replace("cadastro_despesas.html");
+  }

@@ -36,6 +36,10 @@ const cadastroDespesa = async () => {
           return dados_convertidos
         })
     }
+    if(cadastroDespesa){
+      location.href = 'despesas_gerais.html'
+      //caso deu certo o cadastro ele redireciona para a tela de listagem de despesas
+    }
 
     // selecionarTodosCheckboxes();
     // redirecionarConcluir();
