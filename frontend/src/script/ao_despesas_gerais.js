@@ -54,7 +54,7 @@ const carregar_desesas_grupo = async () => {
                 titulo_descricao.innerText = element.descricao
                 titulo_descricao.setAttribute("class", "descricao_despesa")
 
-                const valor_total = document.createElement("p")
+                const valor_total = document.createElement("tr")
                 valor_total.innerText = `R$${element.valor_total}`
                 valor_total.setAttribute("class", "valor_despesa")
                 // FORMATAR O VALOR TOTAL PARA FICAR COMO R$
