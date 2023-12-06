@@ -35,7 +35,7 @@ const get_despesasApartamento = async () => {
                     .then(async function (dados_convertidos) {
                         return dados_convertidos
                     })
-                           
+
             } else {
                 subgrupo = await fetch(`http://127.0.0.1:3000/grupos/subgrupo/${relacao.subgrupo_id}`, {
                     headers: {
@@ -52,15 +52,7 @@ const get_despesasApartamento = async () => {
                     })
             }
 
-
-
-
-            console.log(subgrupo)
-
-            // RENDERIZAR O SUBGRUPO AQUI
-            // const titulo_subgrupo = document.createElement("h1")
-            // titulo_subgrupo.innerText = subgrupo.nome
-
+            // RENDERIZANDO SUBGRUPO
             const descricao_subgrupo = document.createElement("p")
             descricao_subgrupo.innerText = subgrupo.descricao
 
@@ -70,53 +62,75 @@ const get_despesasApartamento = async () => {
             const despesas_container = document.createElement("div")
             despesas_container.setAttribute("id", "despesas_container")
 
-            // document.getElementById("titulo_subgrupo").appendChild(titulo_subgrupo)
             document.getElementById("titulo_subgrupo").innerText = `${subgrupo.nome} - ${subgrupo.descricao}`
-            // document.getElementById("subgrupo").appendChild(descricao_subgrupo)
-            // document.getElementById("subgrupo").appendChild(codigo_acesso)
 
-            const despesas = await fetch(`http://127.0.0.1:3000/despesas/${subgrupo.id}`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    "authorization": localStorage.token
-                }
-            })
-                .then(async function (dados) {
+            // CONSULTANDO DESPESAS
+            var despesas
+            if (relacao.permissao_adm) {
 
-                    return dados.json()
+                console.log('entrei no if')
+                despesas = await fetch(`http://127.0.0.1:3000/despesas/${localStorage.grupo_id}`, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "authorization": localStorage.token
+                    }
                 })
-                .then(async function (dados_convertidos) {
-                    return dados_convertidos
+                    .then(async function (dados) {
+    
+                        return dados.json()
+                    })
+                    .then(async function (dados_convertidos) {
+                        return dados_convertidos
+                    })
+
+            } else {
+                console.log('entrei no else')
+                despesas = await fetch(`http://127.0.0.1:3000/despesas/${subgrupo.id}`, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "authorization": localStorage.token
+                    }
                 })
+                    .then(async function (dados) {
+    
+                        return dados.json()
+                    })
+                    .then(async function (dados_convertidos) {
+                        return dados_convertidos
+                    })
+            }
 
-            // despesas.forEach(element => {
-            //     // RENDERIZAÇÃO DA DESPESA]
-            //     console.log(element)
-            //     const despesa = document.createElement("div")
-            //     despesa.setAttribute("id", element.id)
+            console.log(despesas)
+            // RENDERIZAÇÃO DA DESPESA
+            despesas.forEach(element => {
 
-            //     const titulo_despesa = document.createElement("p")
-            //     titulo_despesa.innerText = element.descricao
+                console.log(element)
 
-            //     const numero_de_parcelas = document.createElement("p")
-            //     numero_de_parcelas.innerText = element.descricao
+                const despesa = document.createElement("tr")
+                despesa.setAttribute("class", "row_informacoes")
 
-            //     const valor_total = document.createElement("p")
-            //     valor_total.innerText = element.valor_total
+                const titulo_despesa = document.createElement("td")
+                titulo_despesa.innerText = element.descricao
+                titulo_despesa.setAttribute("style", "width: 50%")
 
-            //     const data_vencimento = document.createElement("p")
-            //     data_vencimento.innerText = element.data_vencimento
+                const valor_total = document.createElement("td")
+                valor_total.innerText = element.valor_total
+                valor_total.setAttribute("style", "width: 25%")
+                
+                const valor_rateado = document.createElement("td")
+                valor_rateado.innerText = element.valor_total
+                valor_rateado.setAttribute("style", "width: 25%")
 
-            //     despesa.appendChild(titulo_despesa)
-            //     despesa.appendChild(numero_de_parcelas)
-            //     despesa.appendChild(valor_total)
-            //     despesa.appendChild(data_vencimento)
+                despesa.appendChild(titulo_despesa)
+                despesa.appendChild(valor_total)
+                despesa.appendChild(valor_rateado)
 
-            //     despesas_container.appendChild(despesa)
+                // document.getElementById("despesas_container").appendChild(despesa)
+                document.querySelector(".table_visualizacao").appendChild(despesa)
+                // console.log(document.querySelector(".table_visualizacao"))
+            });
 
-            // });
-
-            // document.getElementById("subgrupo").appendChild(despesas_container)
+            
 
         } else {
 

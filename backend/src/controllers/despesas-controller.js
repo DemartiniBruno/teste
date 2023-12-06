@@ -50,7 +50,7 @@ const consultaDespesas = async (req, res) => {
             attributes: ['id','descricao', 'numero_de_parcelas', 'valor_total', 'data_vencimento'],
             include: {
                 model: db.ErSubgruposPagantes,
-                required: false,
+                required: true,
                 where: {
                     subgrupo_id: req.params.subgrupo_id 
                 }
