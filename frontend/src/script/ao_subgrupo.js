@@ -68,7 +68,7 @@ const get_despesasApartamento = async () => {
             var despesas
             if (relacao.permissao_adm) {
 
-                console.log('entrei no if')
+                // VERIFICAR SE O .grupo_id ESTA CORRETO (DEVERIA SER SUBGRUPO)
                 despesas = await fetch(`http://127.0.0.1:3000/despesas/${localStorage.grupo_id}`, {
                     headers: {
                         "Content-Type": "application/json",
@@ -82,6 +82,11 @@ const get_despesasApartamento = async () => {
                     .then(async function (dados_convertidos) {
                         return dados_convertidos
                     })
+                
+                //FAZER UM FETCH PARA PEGAR O VALOR DAS DESPESAS
+
+                //FAZER UM FETCH PARA PEGAR O VALOR_RATEADO PELO localStorage.grupo_id
+                
 
             } else {
                 console.log('entrei no else')
@@ -98,13 +103,22 @@ const get_despesasApartamento = async () => {
                     .then(async function (dados_convertidos) {
                         return dados_convertidos
                     })
+
+                
+                //FAZER UM FETCH PARA PEGAR O VALOR DAS DESPESAS
+
+                //FAZER UM FETCH PARA PEGAR O VALOR_RATEADO PELO subgrupo.id
             }
 
             console.log(despesas)
             // RENDERIZAÇÃO DA DESPESA
+
+            var valor_total_geral = 0
+
             despesas.forEach(element => {
 
                 console.log(element)
+                valor_total_geral = parseFloat(valor_total_geral)+parseFloat(element.valor_total)
 
                 const despesa = document.createElement("tr")
                 despesa.setAttribute("class", "row_informacoes")
@@ -118,7 +132,7 @@ const get_despesasApartamento = async () => {
                 valor_total.setAttribute("style", "width: 25%")
                 
                 const valor_rateado = document.createElement("td")
-                valor_rateado.innerText = element.valor_total
+                valor_rateado.innerText = element.er_subgrupos_pagantes[0].valor_rateado
                 valor_rateado.setAttribute("style", "width: 25%")
 
                 despesa.appendChild(titulo_despesa)
@@ -130,6 +144,11 @@ const get_despesasApartamento = async () => {
                 // console.log(document.querySelector(".table_visualizacao"))
             });
 
+            // VALOR TOTAL GERAL
+            console.log(valor_total_geral)
+            const var_total_geral = document.createElement("p")
+            var_total_geral.innerText = valor_total_geral
+            document.querySelector(".table_visualizacao").appendChild(var_total_geral)
             
 
         } else {

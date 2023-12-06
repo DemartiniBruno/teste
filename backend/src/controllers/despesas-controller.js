@@ -19,12 +19,20 @@ const cadastraDespesa = async (req, res) => {
 
         } else {
 
-            const despesa = await db.Despesas.create(req.body)
-
+            //CONSULTANDO O NUMERO DE APARTAMENTOS 
             req.body.subgrupos_pagantes.forEach(async (element) => {
                 if (element.pagante) {
                     contador++
                 }
+            })
+
+            const despesa = await db.Despesas.create({
+                descricao: req.body.descricao,
+                numero_de_parcelas: req.body.numero_de_parcelas,
+                valor_total: req.body.valor_total,
+                valor_rateado: (req.body.valor_total/contador),
+                data_vencimento: req.body.data_vencimento,
+
             })
 
             req.body.subgrupos_pagantes.forEach(async (element) => {
@@ -35,8 +43,6 @@ const cadastraDespesa = async (req, res) => {
                         valor_rateado: despesa.valor_total/contador
                     })
                 }
-                console.log(element)
-                console.log(contador)
             })
 
             res.json(despesa)
@@ -103,7 +109,9 @@ const consultaDespesas_grupo = async (req, res) => {
 }
 
 const valor_rateado_subgrupo = async (req, res) => {
-
+    const valor_rateado = await db.sequelize.query(`
+        SELECT SUM(VALOR_RATEADO)
+    `)
 }
 
 
@@ -120,8 +128,6 @@ const editarDespesa = async (req, res) => {
             despesa noirmal
 
          
-        
-        
         `)
         console.log(despesa.dataValues)
         despesa.descricao = req.body.descricao

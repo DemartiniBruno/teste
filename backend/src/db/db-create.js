@@ -75,7 +75,11 @@ const Despesas = sequelize.define('despesa', {
         default: 1
     },
     valor_total: {
-        type: DataTypes.NUMERIC,
+        type: DataTypes.DECIMAL(10,2),
+        allowNull: true
+    },
+    valor_rateado: {
+        type: DataTypes.DECIMAL(10,2),
         allowNull: true
     },
     data_quitacao: {
@@ -94,7 +98,7 @@ const Despesas = sequelize.define('despesa', {
 
 const ErSubgruposPagantes = sequelize.define('er_subgrupos_pagantes', {
     valor_rateado: {
-        type: DataTypes.NUMERIC,
+        type: DataTypes.DECIMAL(10,2),
         allowNull: true
     },
 }, { sequelize, paranoid: true })
