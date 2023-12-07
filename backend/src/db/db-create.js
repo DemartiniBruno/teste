@@ -5,7 +5,7 @@ const sequelize = new Sequelize({
     host: 'localhost',
     storage: 'postgres',
     username: 'postgres',
-    password: 'JovemP*2023'
+    password: 'admin'
 });
 
 const Usuario = sequelize.define('usuario', {

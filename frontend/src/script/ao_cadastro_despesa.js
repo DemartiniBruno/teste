@@ -5,10 +5,9 @@ const cadastroDespesa = async () => {
     teste.forEach((element) => {
       teste2.push({
         subgrupo_id: element.value,
-        pagante: element.value
+        pagante: element.checked
       })
     })
-    console.log(teste2)
     const despesas = {
       descricao: document.getElementById('input_descricao').value,
       valor_total: parseFloat(document.getElementById('input_valor').value),
