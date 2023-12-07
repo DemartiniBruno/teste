@@ -2,7 +2,19 @@ const { STRING } = require('sequelize');
 const db = require('../db/db-create');
 
 const cadastraDespesa = async (req, res) => {
-    // console.log(req.body)
+    console.log(`
+    
+    
+    
+    
+    `)
+    console.log(req.body)
+    console.log(`
+    
+    
+    
+    
+    `)
     try {
         var contador = 0
         if (typeof req.body.valor_total === "string") {
@@ -45,7 +57,7 @@ const cadastraDespesa = async (req, res) => {
                 }
             })
 
-            res.json(despesa)
+            res.json({status:200, mensagem:"sucesso"})
 
         }
 

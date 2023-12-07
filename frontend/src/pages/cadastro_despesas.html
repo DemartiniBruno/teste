@@ -218,7 +218,7 @@
 
   
   </head>
-  <body>
+  <body onload="carrega_subgrupos()">
     <div role="main" class="container">
       <div class="menu_lateral">
         <form onsubmit="redirecionarInicio(event)">
@@ -260,11 +260,7 @@
               />
             </label>
           </div>
-          <div class="checkbox" role="group" aria-labelledby="checkbox-group">
-            <div class="checkboxItem">
-              <input type="checkbox" /> Apartamento 001
-            </div>
-            <div class="checkboxItem"><input type="checkbox" /> Todos</div>
+          <div id="checkbox_container" class="checkbox" role="group" aria-labelledby="checkbox-group">
           </div>
           <div>
             <button class="botao_cancelar" type="button"  onclick="cancelar()">
