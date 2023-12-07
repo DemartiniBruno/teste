@@ -21,5 +21,4 @@ app.use('/', gruposRouters)
 app.use('/grupos/', subgruposRouters)
 app.use('/', despesasRouters)
 
-
 module.exports = app;
