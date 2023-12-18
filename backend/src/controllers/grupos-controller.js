@@ -6,44 +6,18 @@ const global_controller = require('./global-controller')
 const cadastrarGrupo = async (req, res) => {
     try {
         const grupo = await db.Grupo.create(req.body)
-        res.json(grupo)
+        res.json({ status: 200, mensagem: 'Sucesso', grupo_id: grupo.id })
     } catch (error) {
-        res.json(error.message)
+        res.json({ status: 200, mensagem: error.message })
     }
 }
-
-// const visualizarGrupos = async (req, res) => {
-//     const usuario = await jsonWebToken.decode(req.headers.authorization, '123')
-
-//     try {
-//         const grupos = await db.Grupo.findAll({
-//             attributes: ['id', 'nome'],
-//             include: {
-//                 required: true,
-//                 model: db.Subgrupo,
-//                 attributes: [],
-//                 include: {
-//                     required: true,
-//                     model: db.ErUsuarioDoSubgrupo,
-//                     attributes: [],
-//                     where: {
-//                         usuario_id: usuario.usuario.id
-//                     }
-//                 }
-//             }
-//         })
-//         res.json(grupos)
-//     } catch (error) {
-//         res.json(error.message)
-//     }
-// }
 
 const visualizarSubgrupos = async (req, res) => {
 
     const usuario = global_controller.informacoes_usuario(req.headers.authorization)
 
     const subgrupos = await db.Grupo.findAll({
-        attributes: ['id','nome'],
+        attributes: ['id', 'nome'],
         include: {
             model: db.Subgrupo,
             include: {
@@ -55,56 +29,25 @@ const visualizarSubgrupos = async (req, res) => {
             }
         },
         where: {
-            id: req.params.id
+            id: req.params.grupo_id
         }
     })
     res.json(subgrupos)
 }
 
-// const visualizarGruposPorUsuario = async (req, res) => {
-//     const usuario = await jsonWebToken.decode(req.headers.authorization, '123')
-
-//     const subgrupos = await db.Grupo.findAll({
-//         // attributes: ['id','nome'],
-//         include: {
-//             model: db.Subgrupo,
-//             include: {
-//                 model: db.ErUsuarioDoSubgrupo,
-//                 where: {
-//                     usuario_id: usuario.usuario.id
-//                 }
-//             }
-//         },
-//     })
-//     res.json(subgrupos)
-// }
-
-const visualizarGruposEspecifico = async (req, res) => {
-    const usuario = await jsonWebToken.decode(req.headers.authorization, '123')
-
+const editarGrupo = async (req, res) => {
     try {
-        const grupos = await db.Grupo.findAll({
-            attributes: ['id', 'nome'],
-            include: {
-                required: true,
-                model: db.Subgrupo,
-                include: {
-                    required: true,
-                    model: db.ErUsuarioDoSubgrupo,
-                    attributes: [],
-                    where: {
-                        usuario_id: usuario.usuario.id
-                    }
-                }
-            },
-            where:{
-                id: req.params.id
+        var editargrupo = await db.Grupo.findOne({
+            where: {
+                id: req.params.grupo_id
             }
         })
-        if(grupos == 0){
-            throw new Error('Grupo errado parça')
-        }
-        res.json(grupos)
+        editargrupo.nome = req.body.nome
+        editargrupo.descricao = req.body.descricao
+        await editargrupo.save({ fields: ['nome', 'descricao'] });
+        res.json(editargrupo)
+
+
     } catch (error) {
         res.json(error.message)
     }
@@ -113,5 +56,5 @@ const visualizarGruposEspecifico = async (req, res) => {
 module.exports = {
     cadastrarGrupo,
     visualizarSubgrupos,
-    // visualizarGruposEspecifico,
+    editarGrupo
 }

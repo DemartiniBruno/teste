@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="port">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>condominAI</title>
+  <link rel="stylesheet" href="../css/st_cadastro.css">
+
+  <script src="../script/ao_cadastro.js"></script>
+</head>
+
+<body>
+  <div id="background" role="main">
+    <div id="bloco">
+      <div>
+        <h1>Cadastro</h1>
+        <form >
+          <label for="usuario">
+            <input type="text" required class="inputtext" name="usuario" id="usuario" placeholder="usuário">
+          </label>
+          <br>
+          <label for="email">
+            <input type="email" required class="inputtext" name="email" id="email" placeholder="email">
+          </label>
+          <br>
+          <label for="senha">
+            <input type="password" required class="inputpassword" name="senha" id="senha" placeholder="senha">
+          </label>
+          <br>
+          <input onclick="cadastrar()" id="inpCadastrar" type="button"  value="Cadastrar">
+          <!-- <button id="cadastrar" type="submit" onclick="cadastrar()">Cadastrar</button> -->
+        </form>
+        <!-- <form action='/tela_cadastro_subgrupo' method="post" enctype="multipart/form-data">
+        </form> -->
+        <!-- Tirando do forms só para testar a função -->
+      </div>
+    </div>
+  </div>
+
+</body>

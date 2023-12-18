@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>condominAI</title>
+    <link rel="stylesheet" href="../css/st_cadastro_subgrupo.css">
+    <script src="../script/ao_cadastro_subgrupo.js"></script>
+  </head>
+  <body>
+    <div role="main">
+      <div id="bloco">
+        <h1>Apartamento</h1>
+        <div id="container">
+          <div class="input-group">
+            <!-- <button
+              id="admin-button"
+              class="admin-button"
+              onclick="AptoAdmin(this)"
+            >
+              🏡
+            </button> -->
+            <input type="checkbox" class="admin-button">
+            <input
+              type="text"
+              class="nome"
+              id="nome"
+              placeholder="Nome do Apto."
+            />
+            <input
+              type="text"
+              class="descricao"
+              id="descricao"
+              placeholder="Descrição"
+            />
+            <button class="add-btn" onclick="adicionarInput()">&#43;</button
+            ><br />
+          </div>
+        </div>
+        <button class="concluir" onclick="concluir()">Concluir</button>
+      </div>
+    </div>
+  </body>
+</html>
